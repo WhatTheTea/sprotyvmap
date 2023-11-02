@@ -1,2 +1,2 @@
 firebase_functions~=0.1.0
-../api/dist/sportyvmap_api-23.4.2.tar.gz
+sportyvmap-api @ git+https://github.com/WhatTheTea/sprotyvmap-api
