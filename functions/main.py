@@ -4,7 +4,6 @@
 
 from firebase_functions import https_fn
 from firebase_admin import initialize_app
-from src import sprotyv_map_api
 
 initialize_app()
 
