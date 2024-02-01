@@ -1,6 +1,0 @@
-{
-    "python.pipenvPath": "functions/venv/bin/activate",
-    "python.defaultInterpreterPath": "functions/venv/bin/python3.11",
-    "python.analysis.typeCheckingMode": "basic",
-    "python.analysis.autoImportCompletions": true
-}
