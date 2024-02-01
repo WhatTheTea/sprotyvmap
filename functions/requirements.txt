@@ -1,3 +1,0 @@
-firebase_functions
-sportyvmap_api @ git+https://github.com/WhatTheTea/sprotyvmap-api
-werkzeug == 2.1.2
