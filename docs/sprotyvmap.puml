@@ -1,0 +1,91 @@
+@startuml sprotyvmap
+package sprotyvmap.Points
+{
+    interface IPointProvider {
+        GetPoint(district, id)
+        GetPointsByDistrict(district)
+        GetAllPoints()
+    }
+    struct Point {
+        {field} Title
+        Information
+        Location
+        Coordinates
+    }
+    IPointProvider -> Point
+    class PointProvider implements IPointProvider
+    PointProvider -> Point
+}
+package sprotyvmap.UI
+{
+    PointController --> IPointProvider
+    PointVMorP <- PointController
+    PointView -> PointVMorP
+}
+package .NET
+{
+    interface IEnumerable<T>
+    {
+        GetEnumerator()
+    }
+    interface IEnumerator<T> implements IDisposable
+    {
+        GetCurrent()
+        MoveNext()
+        Reset()
+    }
+    interface IDisposable {
+        Dispose()
+    }
+}
+package sprotyvmap.WebScraper
+{
+    struct ScrapedData {
+        {field}Title
+        Information
+        Location
+    }
+    ScrapedData <-- PointProvider
+    IWebScraper <- PointProvider
+    IWebScraper -> ScrapedData
+    interface IWebScraper implements IEnumerator
+    class WebScraper implements IWebScraper
+}
+
+package sprotyvmap.Geocoder
+{
+    interface IGeocoderService{
+        GetCoordinates(location)
+    }
+    interface IGeocoderRequestBuilder{
+        GetRequest()
+        SetLanguage()
+        SetCategories()
+        ExcludeCategories()
+        SetText()
+        SetWordText()
+        SetNear()
+        SetRadius()
+        SetOrder()
+        SetIntersectionArea()
+        SetContainsArea()
+        SetZoom()
+        SetLimit()
+        SetCountryCode()
+        SetCoutnryCodePriority()
+        SetApiKey()
+    }
+    interface IGeocoderRequest
+    {
+        GetJSON()
+        GetCSV()
+    }
+    PointProvider -down-> IGeocoderService 
+    class GeocoderService implements IGeocoderService 
+    GeocoderService -> IGeocoderRequestBuilder
+    GeocoderService -> IGeocoderRequest 
+    class GeocoderRequestBuilder implements IGeocoderRequestBuilder
+    GeocoderRequestBuilder -> IGeocoderRequest
+    class GeocoderRequest implements IGeocoderRequest
+}
+@enduml
