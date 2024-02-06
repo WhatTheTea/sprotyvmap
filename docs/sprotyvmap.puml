@@ -54,10 +54,10 @@ package sprotyvmap.WebScraper
 
 package sprotyvmap.Geocoder
 {
-    interface IGeocoderService{
+    interface IGeocoderService {
         GetCoordinates(location)
     }
-    interface IGeocoderRequestBuilder{
+    interface IGeocoderRequestBuilder {
         GetRequest()
         SetLanguage()
         SetCategories()
@@ -75,11 +75,28 @@ package sprotyvmap.Geocoder
         SetCoutnryCodePriority()
         SetApiKey()
     }
-    interface IGeocoderRequest
-    {
+    interface IGeocoderRequest {
         GetJSON()
         GetCSV()
     }
+    package RequestBuilderEnums {
+        enum Language
+        {
+            UK
+            RU
+            EN
+        }
+        enum Order
+        {
+            Asc
+            Desc
+        }
+        enum Categories
+        {
+            ...
+        }
+    }
+    RequestBuilderEnums <- IGeocoderRequestBuilder
     PointProvider -down-> IGeocoderService 
     class GeocoderService implements IGeocoderService 
     GeocoderService -> IGeocoderRequestBuilder
