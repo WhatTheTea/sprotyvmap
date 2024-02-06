@@ -14,7 +14,7 @@ namespace sprotyvmap.Geocoder
         /// <returns><see cref="IGeocoderRequest"/> Запит до API геокодера готовий до виконання</returns>
         IGeocoderRequest GetRequest();
         IGeocoderRequestBuilder SetApiKey(string apiKey);
-        IGeocoderRequestBuilder SetLanguage(ELanguage language);
+        IGeocoderRequestBuilder SetLanguage(Languages language);
         IGeocoderRequestBuilder SetCategories(IEnumerable<ECategories> categories);
         IGeocoderRequestBuilder ExcludeCategories(IEnumerable<ECategories> categories);
         IGeocoderRequestBuilder SetText(string search_text);
