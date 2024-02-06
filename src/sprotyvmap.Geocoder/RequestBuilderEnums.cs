@@ -12,12 +12,12 @@ namespace sprotyvmap.Geocoder
         public const string English = "en";
         public const string Russian = "ru";
     }
-    public enum EOrder
+    public enum Order
     {
         Relevance,
         Distance
     }
-    public enum ECategories
+    public enum Categories
     {
         poi_it_servis,
         poi_cemetery,
