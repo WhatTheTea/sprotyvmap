@@ -29,7 +29,7 @@ namespace sprotyvmap.Geocoder
         IGeocoderRequestBuilder SetContainsArea(string identifier);
         IGeocoderRequestBuilder SetZoom(int TMS);
         IGeocoderRequestBuilder SetLimit(int limit);
-        IGeocoderRequestBuilder SetCountryCode(ECountryCodes code);
-        IGeocoderRequestBuilder SetCoutnryCodePriority(ECountryCodes code);
+        IGeocoderRequestBuilder SetCountryCode(string code);
+        IGeocoderRequestBuilder SetCoutnryCodePriority(string code);
     }
 }

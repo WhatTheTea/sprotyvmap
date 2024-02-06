@@ -19,8 +19,4 @@ namespace sprotyvmap.Geocoder
         Relevance,
         Distance
     }
-    public enum ECountryCodes
-    {
-
-    }
 }
