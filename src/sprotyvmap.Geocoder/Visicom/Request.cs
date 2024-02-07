@@ -2,12 +2,11 @@
 
 public class Request : IGeocoderRequest
 {
-    public IGeocoderRequest ExcludeCategories(string categories)
+    public string Get()
     {
         throw new NotImplementedException();
     }
-
-    public string Get()
+    public IGeocoderRequest ExcludeCategories(string categories)
     {
         throw new NotImplementedException();
     }

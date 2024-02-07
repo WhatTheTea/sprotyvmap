@@ -23,4 +23,8 @@
     <Folder Include="Points\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\sprotyvmap.Geocoder\sprotyvmap.Geocoder.csproj" />
+  </ItemGroup>
+
 </Project>
