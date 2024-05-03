@@ -18,29 +18,13 @@ package sprotyvmap
         class PointProvider implements IPointProvider
         PointProvider -> Point
     }
-    package UI
+    package App
     {
         PointController --> IPointProvider
         PointVMorP <- PointController
         PointView -> PointVMorP
     }
-    package .NET
-    {
-        interface IEnumerable<T>
-        {
-            GetEnumerator()
-        }
-        interface IEnumerator<T> implements IDisposable
-        {
-            GetCurrent()
-            MoveNext()
-            Reset()
-        }
-        interface IDisposable {
-            Dispose()
-        }
-    }
-    package WebScraper
+    package PointDataScraper
     {
         struct ScrapedData {
             {field}Title
@@ -48,13 +32,13 @@ package sprotyvmap
             Location
         }
         ScrapedData <-- PointProvider
-        IWebScraper <- PointProvider
-        IWebScraper -> ScrapedData
-        interface IWebScraper implements IEnumerator
-        class WebScraper implements IWebScraper
+        IPointDataScraper <- PointProvider
+        IPointDataScraper -> ScrapedData
+        interface IPointDataScraper implements IEnumerator
+        class PointDataScraper implements IPointDataScraper
     }
 
-    package Geocoder
+    package Visicom.DataAPI.Geocoder
     {
         interface IGeocoderService {
             GetCoordinates(location)
@@ -77,7 +61,7 @@ package sprotyvmap
             SetZoom()
             SetLimit()
             SetCountryCode()
-            SetCoutnryCodePriority()
+            SetCountryCodePriority()
             SetApiKey()
         }
         class GeocoderService implements IGeocoderService{
@@ -86,8 +70,6 @@ package sprotyvmap
         }
         GeocoderService -> IGeocoderRequest
         PointProvider -down-> IGeocoderService
-        package VisicomDataAPI {
-
             package VisicomRequestEnums {
                 enum Language {
                     UK
@@ -106,7 +88,6 @@ package sprotyvmap
 
             }
             VisicomRequest -> VisicomRequestEnums
-        }
     }
 }
 
