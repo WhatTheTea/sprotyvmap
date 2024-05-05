@@ -5,8 +5,8 @@ namespace WhatTheTea.SprotyvMap.WebScraper;
 public class SprotyvInUaScraper : IEquipmentCentreDataScraper
 {
     private const string SprotyvInUaUri = "https://sprotyv.in.ua/";
-    private HtmlDocument Document { get; set; }
     private HttpClient HttpClient { get; set; }
+    private HtmlDocument Document { get; set; }
     
     private SprotyvInUaScraper(HttpClient httpClient)
     {
@@ -23,18 +23,18 @@ public class SprotyvInUaScraper : IEquipmentCentreDataScraper
 
     private async Task SetDocumentAsync()
     {
-        var rawDocument = await this.HttpClient.GetStringAsync(SprotyvInUaUri);
+        var documentStream = await this.HttpClient.GetStreamAsync(SprotyvInUaUri);
         var document = new HtmlDocument();
-        document.Load(rawDocument);
+        document.Load(documentStream);
         this.Document = document;
     }
     
-    public Task<CentreData> Get(string district, int id)
+    public Task<CentreData> GetCentreAsync(string district, int id)
     {
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<District>> GetAllDistricts()
+    public Task<IEnumerable<District>> GetAllDistrictsAsync()
     {
         throw new NotImplementedException();
     }
