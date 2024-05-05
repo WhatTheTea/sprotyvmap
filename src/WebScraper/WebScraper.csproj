@@ -8,4 +8,8 @@
     <AssemblyName>SprotyvMap.WebScraper</AssemblyName>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.61" />
+  </ItemGroup>
+
 </Project>
