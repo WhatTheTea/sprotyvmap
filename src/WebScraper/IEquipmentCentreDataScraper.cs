@@ -2,7 +2,7 @@
 {
     public interface IEquipmentCentreDataScraper
     {
-        Task<CentreData> Get(string district, int id);
-        Task<IEnumerable<District>> GetAllDistricts();
+        Task<CentreData> GetCentreAsync(string district, int id);
+        Task<IEnumerable<District>> GetAllDistrictsAsync();
     }
 }
