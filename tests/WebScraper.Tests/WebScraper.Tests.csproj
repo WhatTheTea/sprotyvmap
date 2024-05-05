@@ -25,4 +25,14 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\WebScraper\WebScraper.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TestData\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="TestData\sprotyv.in.ua.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
