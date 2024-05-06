@@ -28,26 +28,41 @@ public class SprotyvInUaScraper(HttpClient httpClient) : IEquipmentCentreDataScr
     {
         await DownloadHtmlAsync();
         
-        var centre = new EquipmentCentre(
+        var allDistrictsNode = SelectNode(SprotyvInUaXPathBuilder.GetAllDistrictsXPath());
+        var districtsCount = allDistrictsNode.ChildNodes.Count;
+        if (districtId > districtsCount || districtId < 1)
+        {
+            throw new ArgumentOutOfRangeException(nameof(districtId));
+        }
+
+        var districtNode = SelectNode(SprotyvInUaXPathBuilder.GetDistrictXPath(districtId));
+        var centresCount = districtNode.ChildNodes.Count;
+        if (centreId > centresCount || centreId < 1)
+        {
+            throw new ArgumentOutOfRangeException(nameof(centreId));
+        }
+        
+        return new EquipmentCentre(
             SelectCentreTitle(districtId, centreId),
             SelectCentreInformation(districtId, centreId),
             SelectCentreLocation(districtId, centreId)
             );
-
-        return centre;
     }
 
     private string SelectCentreTitle(int districtId, int centreId) =>
-        SelectNode(SprotyvInUaXPathBuilder.GetEquipmentCentreName(districtId, centreId));
+        SelectNode(SprotyvInUaXPathBuilder.GetEquipmentCentreName(districtId, centreId))
+            .InnerText;
 
     private string SelectCentreInformation(int districtId, int centreId) =>
-        SelectNode(SprotyvInUaXPathBuilder.GetEquipmentCentreInfo(districtId, centreId));
+        SelectNode(SprotyvInUaXPathBuilder.GetEquipmentCentreInfo(districtId, centreId))
+            .InnerText;
 
     private string SelectCentreLocation(int districtId, int centreId) =>
-        SelectNode(SprotyvInUaXPathBuilder.GetEquipmentCentreLocation(districtId, centreId));
+        SelectNode(SprotyvInUaXPathBuilder.GetEquipmentCentreLocation(districtId, centreId))
+            .InnerText;
     
-    private string SelectNode(string xpath) =>
+    private HtmlNode SelectNode(string xpath) =>
         Document.DocumentNode
-            .SelectSingleNode(xpath).InnerText;
+            .SelectSingleNode(xpath);
 
 }
