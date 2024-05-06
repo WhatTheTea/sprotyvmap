@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -30,10 +31,21 @@ public class SprotyvInUaScraperTest
     }
 
     [Fact]
-    public async Task FirstEntryIsVinnytsky()
+    public async Task FirstNodeIsVinnytsky()
     {
         var result = await Scraper.GetCentreAsync(1,1);
         
         result.Title.Should().Be("Вінницький ОТЦК та СП");
+    }
+
+    [Theory]
+    [InlineData(0,0)]
+    [InlineData(1,99)]
+    [InlineData(99, 1)]
+    public async Task OutOfBoundsNodes(int districtId, int centreId)
+    {
+        var act = async () => await Scraper.GetCentreAsync(districtId, centreId);
+
+        await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
     }
 }
