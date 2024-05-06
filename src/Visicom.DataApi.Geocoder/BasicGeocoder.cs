@@ -7,9 +7,11 @@ namespace Visicom.DataApi.Geocoder;
 public class BasicGeocoder : IGeocoder
 {
     private IRequestOptions _options;
+    private HttpClient _httpClient;
 
-    public BasicGeocoder(IRequestOptions options)
+    public BasicGeocoder(HttpClient httpClient, IRequestOptions options)
     {
+        _httpClient = httpClient;
         _options = options;
     }
 
