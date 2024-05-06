@@ -11,13 +11,13 @@ using Xunit;
 
 namespace WhatTheTea.SprotyvMap.WebScraper.Tests;
 
-[TestSubject(typeof(SprotyvInUaScraper))]
+[TestSubject(typeof(WebScraper))]
 public class SprotyvInUaScraperTest
 {
     private const string SiteUri = "https://sprotyv.in.ua/";
     private const string TestSiteUri = "TestData/sprotyv.in.ua.htm";
 
-    private SprotyvInUaScraper Scraper { get; set; }
+    private WebScraper Scraper { get; set; }
     
     public SprotyvInUaScraperTest()
     {
@@ -27,7 +27,7 @@ public class SprotyvInUaScraperTest
             .Respond("text/html", testPage);
         var httpClient = httpMock.ToHttpClient();
 
-        Scraper = new SprotyvInUaScraper(httpClient);
+        Scraper = new WebScraper(httpClient);
     }
 
     [Fact]

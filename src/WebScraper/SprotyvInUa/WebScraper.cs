@@ -4,7 +4,7 @@ using WhatTheTea.SprotyvMap.WebScraper.Data;
 
 namespace WhatTheTea.SprotyvMap.WebScraper;
 
-public class SprotyvInUaScraper(HttpClient httpClient) : IEquipmentCentreDataScraper
+public class WebScraper(HttpClient httpClient) : IEquipmentCentreDataScraper
 {
     private const string SprotyvInUaUri = "https://sprotyv.in.ua/";
     private HttpClient HttpClient { get; set; } = httpClient;
@@ -28,14 +28,14 @@ public class SprotyvInUaScraper(HttpClient httpClient) : IEquipmentCentreDataScr
     {
         await DownloadHtmlAsync();
         
-        var allDistrictsNode = SelectNode(SprotyvInUaXPathBuilder.GetAllDistrictsXPath());
+        var allDistrictsNode = SelectNode(XPathBuilder.GetAllDistrictsXPath());
         var districtsCount = allDistrictsNode.ChildNodes.Count;
         if (districtId > districtsCount || districtId < 1)
         {
             throw new ArgumentOutOfRangeException(nameof(districtId));
         }
 
-        var districtNode = SelectNode(SprotyvInUaXPathBuilder.GetDistrictXPath(districtId));
+        var districtNode = SelectNode(XPathBuilder.GetDistrictXPath(districtId));
         var centresCount = districtNode.ChildNodes.Count;
         if (centreId > centresCount || centreId < 1)
         {
@@ -50,15 +50,15 @@ public class SprotyvInUaScraper(HttpClient httpClient) : IEquipmentCentreDataScr
     }
 
     private string SelectCentreTitle(int districtId, int centreId) =>
-        SelectNode(SprotyvInUaXPathBuilder.GetEquipmentCentreName(districtId, centreId))
+        SelectNode(XPathBuilder.GetEquipmentCentreName(districtId, centreId))
             .InnerText;
 
     private string SelectCentreInformation(int districtId, int centreId) =>
-        SelectNode(SprotyvInUaXPathBuilder.GetEquipmentCentreInfo(districtId, centreId))
+        SelectNode(XPathBuilder.GetEquipmentCentreInfo(districtId, centreId))
             .InnerText;
 
     private string SelectCentreLocation(int districtId, int centreId) =>
-        SelectNode(SprotyvInUaXPathBuilder.GetEquipmentCentreLocation(districtId, centreId))
+        SelectNode(XPathBuilder.GetEquipmentCentreLocation(districtId, centreId))
             .InnerText;
     
     private HtmlNode SelectNode(string xpath) =>

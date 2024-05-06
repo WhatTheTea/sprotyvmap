@@ -1,6 +1,6 @@
 namespace WhatTheTea.SprotyvMap.WebScraper;
 
-internal class SprotyvInUaXPathBuilder
+internal class XPathBuilder
 {
     private static string GetDistrictNameXPath(string district) =>
         $"{GetAllDistrictsXPath()}/div[{district}]/div/div[1]/span/span[1]/text()";
