@@ -48,4 +48,13 @@ public class SprotyvInUaScraperTest
 
         await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
     }
+
+    public async Task AllDistrictsFirstIsVinnytsky()
+    {
+        var result = await Scraper.GetAllDistrictsAsync();
+        var district = result.First();
+        var centre = district.EquipmentCentres.First();
+        
+        district.Name.Should().Be("")
+    }
 }
