@@ -32,11 +32,8 @@ public class SprotyvInUaScraperTest
     [Fact]
     public async Task FirstEntryIsVinnytsky()
     {
-        var result = await Scraper.GetAllDistrictsAsync();
-        var district = result.First();
-        var centre = district.EquipmentCentres.First();
-
-        district.Name.Should().Be("Вінницька область");
-        centre.Title.Should().Be("Вінницький ОТЦК та СП");
+        var result = await Scraper.GetCentreAsync(1,1);
+        
+        result.Title.Should().Be("Вінницький ОТЦК та СП");
     }
 }

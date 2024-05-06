@@ -19,6 +19,11 @@ public class SprotyvInUaScraper(HttpClient httpClient) : IEquipmentCentreDataScr
         Document = document;
     }
     
+    public Task<IEnumerable<District>> GetAllDistrictsAsync()
+    {
+        throw new NotImplementedException();
+    }
+    
     public async Task<EquipmentCentre> GetCentreAsync(int districtId, int centreId)
     {
         await DownloadHtmlAsync();
@@ -43,11 +48,6 @@ public class SprotyvInUaScraper(HttpClient httpClient) : IEquipmentCentreDataScr
     
     private string SelectNode(string xpath) =>
         Document.DocumentNode
-            .SelectSingleNode(xpath)
-            .ToString() ?? "";
+            .SelectSingleNode(xpath).InnerText;
 
-    public Task<IEnumerable<District>> GetAllDistrictsAsync()
-    {
-        throw new NotImplementedException();
-    }
 }
