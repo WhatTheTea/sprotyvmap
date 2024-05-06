@@ -26,9 +26,7 @@ public class SprotyvInUaScraperTest
             .Respond("text/html", testPage);
         var httpClient = httpMock.ToHttpClient();
 
-        this.Scraper = SprotyvInUaScraper.CreateAsync(httpClient)
-            .GetAwaiter()
-            .GetResult();
+        Scraper = new SprotyvInUaScraper(httpClient);
     }
 
     [Fact]

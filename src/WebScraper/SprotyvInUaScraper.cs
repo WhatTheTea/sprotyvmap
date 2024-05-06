@@ -1,38 +1,50 @@
-﻿using HtmlAgilityPack;
+﻿using System.Diagnostics.CodeAnalysis;
+using HtmlAgilityPack;
+using WhatTheTea.SprotyvMap.WebScraper.Data;
 
 namespace WhatTheTea.SprotyvMap.WebScraper;
 
-public class SprotyvInUaScraper : IEquipmentCentreDataScraper
+public class SprotyvInUaScraper(HttpClient httpClient) : IEquipmentCentreDataScraper
 {
     private const string SprotyvInUaUri = "https://sprotyv.in.ua/";
-    private HttpClient HttpClient { get; set; }
-    private HtmlDocument Document { get; set; }
-    
-    private SprotyvInUaScraper(HttpClient httpClient)
-    {
-        HttpClient = httpClient;
-    }
+    private HttpClient HttpClient { get; set; } = httpClient;
+    [NotNull]
+    private HtmlDocument? Document { get; set; }
 
-    public static async Task<SprotyvInUaScraper> CreateAsync(HttpClient client)
+    private async Task DownloadHtmlAsync()
     {
-        var instance = new SprotyvInUaScraper(client);
-        await instance.SetDocumentAsync();
-        
-        return instance;
-    }
-
-    private async Task SetDocumentAsync()
-    {
-        var documentStream = await this.HttpClient.GetStreamAsync(SprotyvInUaUri);
+        var documentStream = await HttpClient.GetStreamAsync(SprotyvInUaUri);
         var document = new HtmlDocument();
         document.Load(documentStream);
-        this.Document = document;
+        Document = document;
     }
     
-    public Task<CentreData> GetCentreAsync(string district, int id)
+    public async Task<EquipmentCentre> GetCentreAsync(int districtId, int centreId)
     {
-        throw new NotImplementedException();
+        await DownloadHtmlAsync();
+        
+        var centre = new EquipmentCentre(
+            SelectCentreTitle(districtId, centreId),
+            SelectCentreInformation(districtId, centreId),
+            SelectCentreLocation(districtId, centreId)
+            );
+
+        return centre;
     }
+
+    private string SelectCentreTitle(int districtId, int centreId) =>
+        SelectNode(SprotyvInUaXPathBuilder.GetEquipmentCentreName(districtId, centreId));
+
+    private string SelectCentreInformation(int districtId, int centreId) =>
+        SelectNode(SprotyvInUaXPathBuilder.GetEquipmentCentreInfo(districtId, centreId));
+
+    private string SelectCentreLocation(int districtId, int centreId) =>
+        SelectNode(SprotyvInUaXPathBuilder.GetEquipmentCentreLocation(districtId, centreId));
+    
+    private string SelectNode(string xpath) =>
+        Document.DocumentNode
+            .SelectSingleNode(xpath)
+            .ToString() ?? "";
 
     public Task<IEnumerable<District>> GetAllDistrictsAsync()
     {
