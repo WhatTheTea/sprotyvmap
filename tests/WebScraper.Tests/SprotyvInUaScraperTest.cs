@@ -49,12 +49,14 @@ public class SprotyvInUaScraperTest
         await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
     }
 
+    [Fact]
     public async Task AllDistrictsFirstIsVinnytsky()
     {
         var result = await Scraper.GetAllDistrictsAsync();
         var district = result.First();
         var centre = district.EquipmentCentres.First();
-        
-        district.Name.Should().Be("")
+
+        district.Name.Should().Be("Вінницька область");
+        centre.Title.Should().Be("Вінницький ОТЦК та СП");
     }
 }
