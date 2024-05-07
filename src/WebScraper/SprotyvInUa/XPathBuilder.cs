@@ -1,9 +1,9 @@
 namespace WhatTheTea.SprotyvMap.WebScraper.SprotyvInUa;
 
-internal class XPathBuilder
+internal static class XPathBuilder
 {
-    private static string DistrictNameXPath(string district) =>
-        $"{AllDistrictsXPath()}/div[{district}]/div/div[1]/span/span[1]/text()";
+    public static string DistrictNameXPath(int districtId) =>
+        $"{AllDistrictsXPath()}/div[{districtId}]/div/div[1]/span/span[1]/text()";
     
     public static string EquipmentCentreName(int districtId, int centreId) =>
         EquipmentCentreData(districtId, centreId, 1);

@@ -32,9 +32,9 @@ public class SprotyvInUaScraperTest
     }
 
     [Fact]
-    public async Task FirstNodeIsVinnytsky()
+    public void FirstNodeIsVinnytsky()
     {
-        var result = await Scraper.GetCentreAsync(1,1);
+        var result = Scraper.GetEquipmentCentre(1,1);
         
         result.Title.Should().Be("Вінницький ОТЦК та СП");
     }
@@ -43,17 +43,17 @@ public class SprotyvInUaScraperTest
     [InlineData(0,0)]
     [InlineData(1,99)]
     [InlineData(99, 1)]
-    public async Task OutOfBoundsNodes(int districtId, int centreId)
+    public void OutOfBoundsNodes(int districtId, int centreId)
     {
-        var act = async () => await Scraper.GetCentreAsync(districtId, centreId);
+        var act = () => Scraper.GetEquipmentCentre(districtId, centreId);
 
-        await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
+        act.Should().Throw<ArgumentOutOfRangeException>();
     }
 
     [Fact]
-    public async Task AllDistrictsFirstIsVinnytsky()
+    public void AllDistrictsFirstIsVinnytsky()
     {
-        var result = await Scraper.GetAllDistrictsAsync();
+        var result = Scraper.GetAllDistricts();
         var district = result.First();
         var centre = district.EquipmentCentres.First();
 

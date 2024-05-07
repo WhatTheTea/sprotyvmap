@@ -4,7 +4,7 @@ namespace WhatTheTea.SprotyvMap.WebScraper
 {
     public interface IEquipmentCentreDataScraper
     {
-        Task<EquipmentCentre> GetCentreAsync(int districtId, int centreId);
-        Task<IEnumerable<District>> GetAllDistrictsAsync();
+        EquipmentCentre GetEquipmentCentre(int districtId, int centreId);
+        IEnumerable<District> GetAllDistricts();
     }
 }
