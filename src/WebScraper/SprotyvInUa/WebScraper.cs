@@ -6,22 +6,23 @@ namespace WhatTheTea.SprotyvMap.WebScraper.SprotyvInUa;
 
 public class WebScraper : IEquipmentCentreDataScraper
 {
-    private WebScraper(HttpClient httpClient)
-    {
-        HttpClient = httpClient;
-    }
-
+    private const string SprotyvInUaUri = "https://sprotyv.in.ua/";
+    
+    private HttpClient HttpClient { get; set; }
+    private HtmlDocument Document { get; set; }
+    
     public static async Task<WebScraper> Create(HttpClient httpClient)
     {
         var instance = new WebScraper(httpClient);
         await instance.LoadHtmlAsync();
         return instance;
     }
-
-    private const string SprotyvInUaUri = "https://sprotyv.in.ua/";
-    private HttpClient HttpClient { get; set; }
-    [NotNull]
-    private HtmlDocument? Document { get; set; }
+    
+    private WebScraper(HttpClient httpClient)
+    {
+        HttpClient = httpClient;
+        Document = new HtmlDocument();
+    }
 
     /// <summary>
     /// Downloads sprotyv.in.ua. Can be used to update data.
@@ -29,9 +30,7 @@ public class WebScraper : IEquipmentCentreDataScraper
     public async Task LoadHtmlAsync()
     {
         var documentStream = await HttpClient.GetStreamAsync(SprotyvInUaUri);
-        var document = new HtmlDocument();
-        document.Load(documentStream);
-        Document = document;
+        Document.Load(documentStream);
     }
     
     public Task<IEnumerable<District>> GetAllDistrictsAsync()
@@ -42,26 +41,25 @@ public class WebScraper : IEquipmentCentreDataScraper
     public async Task<EquipmentCentre> GetCentreAsync(int districtId, int centreId)
     {
         await LoadHtmlAsync();
-        
-        var allDistrictsNode = SelectNode(XPathBuilder.GetAllDistrictsXPath());
-        var districtsCount = allDistrictsNode.ChildNodes.Count;
-        if (districtId > districtsCount || districtId < 1)
-        {
-            throw new ArgumentOutOfRangeException(nameof(districtId));
-        }
 
-        var districtNode = SelectNode(XPathBuilder.GetDistrictXPath(districtId));
-        var centresCount = districtNode.ChildNodes.Count;
-        if (centreId > centresCount || centreId < 1)
-        {
+        if (!IsValueInChildrenCountRange(
+                SelectNode(XPathBuilder.GetAllDistrictsXPath()), districtId))
+            throw new ArgumentOutOfRangeException(nameof(districtId));
+        if (!IsValueInChildrenCountRange(
+                SelectNode(XPathBuilder.GetDistrictXPath(districtId)), centreId))
             throw new ArgumentOutOfRangeException(nameof(centreId));
-        }
         
         return new EquipmentCentre(
-            SelectCentreTitle(districtId, centreId),
-            SelectCentreInformation(districtId, centreId),
-            SelectCentreLocation(districtId, centreId)
-            );
+                SelectCentreTitle(districtId, centreId),
+                SelectCentreInformation(districtId, centreId),
+                SelectCentreLocation(districtId, centreId)
+                );
+    }
+
+    private static bool IsValueInChildrenCountRange(HtmlNode node, int value)
+    {
+        var childNodesCount = node.ChildNodes.Count;
+        return value <= childNodesCount && value >= 1;
     }
 
     private string SelectCentreTitle(int districtId, int centreId) =>
