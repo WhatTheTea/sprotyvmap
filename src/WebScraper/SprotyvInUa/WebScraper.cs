@@ -2,16 +2,31 @@
 using HtmlAgilityPack;
 using WhatTheTea.SprotyvMap.WebScraper.Data;
 
-namespace WhatTheTea.SprotyvMap.WebScraper;
+namespace WhatTheTea.SprotyvMap.WebScraper.SprotyvInUa;
 
-public class WebScraper(HttpClient httpClient) : IEquipmentCentreDataScraper
+public class WebScraper : IEquipmentCentreDataScraper
 {
+    private WebScraper(HttpClient httpClient)
+    {
+        HttpClient = httpClient;
+    }
+
+    public static async Task<WebScraper> Create(HttpClient httpClient)
+    {
+        var instance = new WebScraper(httpClient);
+        await instance.LoadHtmlAsync();
+        return instance;
+    }
+
     private const string SprotyvInUaUri = "https://sprotyv.in.ua/";
-    private HttpClient HttpClient { get; set; } = httpClient;
+    private HttpClient HttpClient { get; set; }
     [NotNull]
     private HtmlDocument? Document { get; set; }
 
-    private async Task DownloadHtmlAsync()
+    /// <summary>
+    /// Downloads sprotyv.in.ua. Can be used to update data.
+    /// </summary>
+    public async Task LoadHtmlAsync()
     {
         var documentStream = await HttpClient.GetStreamAsync(SprotyvInUaUri);
         var document = new HtmlDocument();
@@ -26,7 +41,7 @@ public class WebScraper(HttpClient httpClient) : IEquipmentCentreDataScraper
     
     public async Task<EquipmentCentre> GetCentreAsync(int districtId, int centreId)
     {
-        await DownloadHtmlAsync();
+        await LoadHtmlAsync();
         
         var allDistrictsNode = SelectNode(XPathBuilder.GetAllDistrictsXPath());
         var districtsCount = allDistrictsNode.ChildNodes.Count;

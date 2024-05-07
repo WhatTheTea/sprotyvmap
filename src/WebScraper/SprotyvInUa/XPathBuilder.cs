@@ -1,4 +1,4 @@
-namespace WhatTheTea.SprotyvMap.WebScraper;
+namespace WhatTheTea.SprotyvMap.WebScraper.SprotyvInUa;
 
 internal class XPathBuilder
 {
