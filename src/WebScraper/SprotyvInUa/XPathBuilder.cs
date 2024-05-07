@@ -2,22 +2,22 @@ namespace WhatTheTea.SprotyvMap.WebScraper.SprotyvInUa;
 
 internal class XPathBuilder
 {
-    private static string GetDistrictNameXPath(string district) =>
-        $"{GetAllDistrictsXPath()}/div[{district}]/div/div[1]/span/span[1]/text()";
+    private static string DistrictNameXPath(string district) =>
+        $"{AllDistrictsXPath()}/div[{district}]/div/div[1]/span/span[1]/text()";
     
-    public static string GetEquipmentCentreName(int districtId, int centreId) =>
-        GetEquipmentCentreData(districtId, centreId, 1);
-    public static string GetEquipmentCentreInfo(int districtId, int centreId) =>
-        GetEquipmentCentreData(districtId, centreId, 2);
-    public static string GetEquipmentCentreLocation(int districtId, int centreId) =>
-        GetEquipmentCentreData(districtId, centreId, 3);
-    private static string GetEquipmentCentreData(int districtId, int centreId, int columnId) =>
-        GetDistrictXPath(districtId) + $"/tr[{centreId}]/td[{columnId}]/text()";
+    public static string EquipmentCentreName(int districtId, int centreId) =>
+        EquipmentCentreData(districtId, centreId, 1);
+    public static string EquipmentCentreInfo(int districtId, int centreId) =>
+        EquipmentCentreData(districtId, centreId, 2);
+    public static string EquipmentCentreLocation(int districtId, int centreId) =>
+        EquipmentCentreData(districtId, centreId, 3);
+    private static string EquipmentCentreData(int districtId, int centreId, int columnId) =>
+        DistrictXPath(districtId) + $"/tr[{centreId}]/td[{columnId}]/text()";
     
-    public static string GetDistrictXPath(int districtId) =>
-        GetAllDistrictsXPath() + $"/div[{districtId}]/div/div[2]/div/div/table/tbody";
+    public static string DistrictXPath(int districtId) =>
+        AllDistrictsXPath() + $"/div[{districtId}]/div/div[2]/div/div/table/tbody";
     
-    public static string GetAllDistrictsXPath() => "/html/body/div/section[2]/div";
+    public static string AllDistrictsXPath() => "/html/body/div/section[2]/div";
 
 
 
