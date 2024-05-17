@@ -1,225 +1,452 @@
 ﻿namespace Visicom.DataApi.Geocoder.Enums
 {
-    public static class Categories
+    public enum Categories
     {
-        public const string ItService = "poi_it_servis";
-        public const string Cemetery = "poi_cemetery";
-        public const string Prisons = "poi_prisions";
-        public const string NotariesPublic = "poi_notaries_public";
-        public const string ExhibitionCenter = "poi_exhibition_center";
-        public const string AutopilotServices = "poi_autopilot_services";
-        public const string DryCleanerLaundry = "poi_dry_cleaner_laundry";
-        public const string InsuranceCompany = "poi_insurance_company";
-        public const string TaxiService = "poi_taxi_service";
-        public const string AutomotiveShop = "poi_automotive_shop";
-        public const string Grocery = "poi_grocery";
-        public const string Optics = "poi_optics";
-        public const string Aquaparks = "poi_aquaparks";
-        public const string Veterinarians = "poi_veterinarians";
-        public const string BusinessCentre = "poi_business_centre";
-        public const string PreschoolEstablishment = "poi_preschool_establishment";
-        public const string Library = "poi_library";
-        public const string BotanicGarden = "poi_botanic_garden";
-        public const string Casino = "poi_casino";
-        public const string SwimmingPool = "poi_swimming_pool";
-        public const string SportsComplex = "poi_sports_complexe";
-        public const string InquiryService = "poi_inquiry_service";
-        public const string PaintballLazerShooting = "poi_paintball_lazer_shooting";
-        public const string HorseRiding = "poi_horse_riding";
-        public const string MonumentOfArchitectureAndTownPlanning = "poi_monument_of_architecture_and_town_planning";
-        public const string MonumentOfScience = "poi_monument_of_science";
-        public const string EnterpriseOrganisation = "poi_enterprise_organisation";
-        public const string Ferry = "poi_ferry";
-        public const string Airport = "poi_airport";
-        public const string BusStation = "poi_bus_station";
-        public const string RailwayStation = "poi_railway_station";
-        public const string RiverStation = "poi_river_station";
-        public const string Port = "poi_port";
-        public const string RescueServices = "poi_rescue_services";
-        public const string Funicular = "poi_funicular";
-        public const string TranslationBureaus = "poi_translation_bureaus";
-        public const string CashDesk = "poi_cash_desk";
-        public const string AutomobileSalesCentre = "poi_automobile_sales_centre";
-        public const string Parking = "poi_parking";
-        public const string CarRental = "poi_car_rental";
-        public const string DrivingSchool = "poi_driving_school";
-        public const string PostOffice = "poi_post_office";
-        public const string TyreFittingShop = "poi_tyre_fitting_shop";
-        public const string Furniture = "poi_furniture";
-        public const string CarServiceStation = "poi_car_service_station";
-        public const string OtherService = "poi_other_service";
-        public const string Atm = "poi_atm";
-        public const string Workshop = "poi_workshop";
-        public const string CarWash = "poi_car_wash";
-        public const string CarEvacuationService = "poi_car_evacuation_service";
-        public const string Bank = "poi_bank";
-        public const string Confectionery = "poi_confectionery";
-        public const string EverythingForHoliday = "poi_everything_for_holiday";
-        public const string ExpressMail = "poi_express_mail";
-        public const string Restaurant = "poi_restaurant";
-        public const string PublicAmenitiesCenter = "poi_public_amenities_center";
-        public const string Delivery = "poi_delivery";
-        public const string RepairShop = "poi_repair_shop";
-        public const string WiFi = "poi_wi_fi";
-        public const string PaymentTerminal = "poi_payment_terminal";
-        public const string Sauna = "poi_sauna";
-        public const string BeautyShopSpa = "poi_beauty_shop_spa";
-        public const string Wc = "poi_wc";
-        public const string WorkOfArt = "poi_work_of_art";
-        public const string Antiques = "poi_antiques";
-        public const string ConcertHall = "poi_concert_hall";
-        public const string MuseumGallery = "poi_museum_gallery";
-        public const string Theater = "poi_theater";
-        public const string HouseholdAppliancesAndElectronics = "poi_houshold_appliances_and_electronics";
-        public const string GoodsForChildren = "poi_goods_for_children";
-        public const string ClothesAndAccessories = "poi_clothes_and_accessories";
-        public const string HouseholdTextile = "poi_household_textile";
-        public const string Clothes = "poi_clothes";
-        public const string ShoeShop = "poi_shoe_shop";
-        public const string PerfumesAndHouseholdChemicals = "poi_parfumes_and_houshold_chemicals";
-        public const string JewelryShop = "poi_jewelry_shop";
-        public const string College = "poi_college";
-        public const string Embassy = "poi_embassy";
-        public const string FruitAndVegetableStore = "poi_fruit_and_vegetable_store";
-        public const string ShoppingCentre = "poi_shopping_centre";
-        public const string BuildingMaterials = "poi_building_materials";
-        public const string Shop = "poi_shop";
-        public const string Market = "poi_market";
-        public const string Supermarket = "poi_supermarket";
-        public const string Hospital = "poi_hospital";
-        public const string LaboratoryCentre = "poi_laboratory_centre";
-        public const string Stomatology = "poi_stomatology";
-        public const string MedicalCentreDiagnostic = "poi_medical_centre_diagnostic";
-        public const string Polyclinic = "poi_policlinic";
-        public const string MaternityHospital = "poi_maternity_hospital";
-        public const string Pharmacy = "poi_pharmacy";
-        public const string EmergencyFirstAidStation = "poi_emergency_first_aid_station";
-        public const string HigherEducationalEstablishment = "poi_higher_educational_establishment";
-        public const string TechnicalSchool = "poi_technical_school";
-        public const string ArtSchoolCentreStudio = "poi_art_school_centre_studio";
-        public const string MusicalSchool = "poi_musical_school";
-        public const string GeneralEducationSchoolGymnasiaLyceum = "poi_general_education_school_gymnasia_lyceum";
-        public const string SportSchool = "poi_sport_school";
-        public const string OtherSchool = "poi_other_school";
-        public const string SpecializedSchool = "poi_specialized_school";
-        public const string HobbyGroupCircleSchool = "poi_hobby_group_circle_school";
-        public const string StateAdministration = "poi_state_administration";
-        public const string Delfinarii = "poi_del_finariy";
-        public const string CivilRegistryOffice = "poi_civil_registry_office";
-        public const string Zoo = "poi_zoo";
-        public const string PublicProsecutorOffice = "poi_public_prosecutor_office";
-        public const string Court = "poi_court";
-        public const string Customs = "poi_customs";
-        public const string ForeignCompanyRepresentative = "poi_foreign_company_representative";
-        public const string Beache = "poi_beache";
-        public const string Circus = "poi_circus";
-        public const string Stadium = "poi_stadium";
-        public const string DoctorSAdviceByPhone = "poi_doctor_s_advice_by_phone";
-        public const string NightClub = "poi_night_club";
-        public const string RaceCours = "poi_race_cours";
-        public const string ChurchCathedralMonastery = "poi_church_cathedral_monastery";
-        public const string Diving = "poi_diving";
-        public const string FitnessSportingHall = "poi_fitness_sporting_hall";
-        public const string HistoryOfTheArea = "poi_history_of_the_area";
-        public const string EntertainingComplex = "poi_entertaining_complex";
-        public const string Tennis = "poi_tennis";
-        public const string Bowling = "poi_bowling";
-        public const string Billiards = "poi_billiards";
-        public const string Golf = "poi_golf";
-        public const string SkatingSite = "poi_skating_site";
-        public const string OtherTypeOfSport = "poi_other_type_of_sport";
-        public const string RollerdromeGoCartTrack = "poi_rollerdrome_go_cart_track";
-        public const string TouristBoat = "poi_tourist_boat";
-        public const string TouristBus = "poi_tourist_bus";
-        public const string MonumentOfNature = "poi_monument_of_nature";
-        public const string TouristInformationCenter = "poi_tourist_information_center";
-        public const string TouristObjects = "poi_tourist_objects";
-        public const string ObservationalGround = "poi_observational_ground";
-        public const string SkiingSnowboarding = "poi_skiing_snowboarding";
-        public const string SpeleoAndMountainTourism = "poi_speleo_and_mountain_tourism";
-        public const string YachtingSailing = "poi_yachting_sailing";
-        public const string Motosport = "poi_motosport";
-        public const string Skydiving = "poi_skydiving";
-        public const string OrganizatorsOfOutdoorActivities = "poi_organizetors_of_outdoor_activities";
-        public const string OtherTypesOfOutdoorActivities = "poi_other_types_of_outdoor_activities";
-        public const string EcoTourism = "poi_eco_tourism";
-        public const string TravelAgency = "poi_travel_agency";
-        public const string HuntingForestAndFishGrowingBase = "poi_hunting_forest_and_fish_growing_base";
-        public const string OrganizationOfHuntersAndFishermen = "poi_organization_of_hunters_and_fishermen";
-        public const string Statue = "poi_statue";
-        public const string ShopForHuntersAndFishermen = "poi_shop_for_hunters_and_fishermen";
-        public const string Camping = "poi_camping";
-        public const string RentalOfSportingInventory = "poi_rental_of_sporting_inventory";
-        public const string RopeRoad = "poi_rope_road";
-        public const string HistoricalMonument = "poi_historical_monument";
-        public const string ArcheologicalMonument = "poi_archeological_monument";
-        public const string MonumentOfParkArt = "poi_monument_of_park_art";
-        public const string ClothesE = "poi_clothes_e";
-        public const string ShoeShopE = "poi_shoe_shop_e";
-        public const string AutomotiveShopE = "poi_automotive_shop_e";
-        public const string WorkOfArtE = "poi_work_of_art_e";
-        public const string AntiquesE = "poi_antiques_e";
-        public const string HouseholdAppliancesAndElectronicsE = "poi_houshold_appliances_and_electronics_e";
-        public const string GoodsForChildrenE = "poi_goods_for_children_e";
-        public const string ClothesAndAccessoriesE = "poi_clothes_and_accessories_e";
-        public const string HouseholdTextileE = "poi_household_textile_e";
-        public const string FurnitureE = "poi_furniture_e";
-        public const string PerfumesAndHouseholdChemicalsE = "poi_parfumes_and_houshold_chemicals_e";
-        public const string JewelryShopE = "poi_jewelry_shop_e";
-        public const string GroceryE = "poi_grocery_e";
-        public const string FruitAndVegetableStoreE = "poi_fruit_and_vegetable_store_e";
-        public const string SportShopsE = "poi_sport_shops_e";
-        public const string BuildingMaterialsE = "poi_building_materials_e";
-        public const string DecorAndGift = "poi_decor_and_gift";
-        public const string Hostel = "poi_hostel";
-        public const string UndergroundRailwayStation = "poi_underground_railway_station";
-        public const string DecorAndGiftE = "poi_decor_and_gift_e";
-        public const string FastFood = "poi_fast_food";
-        public const string RealEstateAgencies = "poi_real_estate_agencies";
-        public const string CafeBar = "poi_cafe_bar";
-        public const string PizzaRestaurant = "poi_pizza_restaurant";
-        public const string BooksStationeryE = "poi_books_stationery_e";
-        public const string BooksStationery = "poi_books_stationery";
-        public const string Sanatorium = "poi_sanatorium";
-        public const string RecreationCampBoardingHouse = "poi_recreation_camp_boarding_house";
-        public const string PetShop = "poi_pet_shop";
-        public const string HangGliding = "poi_hang_gliding";
-        public const string PalacesAndCommunityCentres = "poi_palaces_and_community_centres";
-        public const string MotorLicencingInspection = "poi_motor_licencing_inspection";
-        public const string CentresSai = "poi_centres_sai";
-        public const string Mound = "poi_mound";
-        public const string ChronicleCity = "poi_chronicle city"; //!OG: poi_chronicle city
-        public const string Settlement = "poi_settlement";
-        public const string BurialMound = "poi_burial_mound";
-        public const string GroundBurial = "poi_ground_burial";
-        public const string PoliceStation = "poi_police_station";
-        public const string ElectricVehicleChargingStation = "poi_electric_vehicle_charging_station";
-        public const string PetrolStation = "poi_petrol_station";
-        public const string GasFillingStation = "poi_gas_filling_station";
-        public const string GovernmentAgenciesAndEnterprises = "poi_government_agencies_and_enterprises";
-        public const string ParkSquare = "poi_park_square";
-        public const string Cinema = "poi_cinema";
-        public const string HotelAndMotel = "poi_hotel_and_motel";
-        public const string EthnoObject = "poi_ethno_object";
-        public const string Dendropark = "poi_dendropark";
-        public const string BoardingHouses = "poi_boarding_houses";
-        public const string CenterOfSocialServices = "poi_center_of_social_services";
-        public const string RehabilitationCenter = "poi_rehabilitation_center";
-        public const string ChildrenRecreationActivities = "poi_children_recreation_activities";
-        public const string SportShops = "poi_sport_shops";
-        public const string IndustrialEnterprise = "poi_industrial_enterprise";
-        public const string AirportTerminal = "poi_airport_terminal";
-        public const string HouseholdGoods = "poi_household_goods";
-        public const string Address = "adr_address";
-        public const string Street = "adr_street";
-        public const string SettlementAdministrative = "adm_settlement";
-        public const string Country = "adm_country";
-        public const string Level1 = "adm_level1";
-        public const string Level2 = "adm_level2";
-        public const string Level3 = "adm_level3";
-        public const string District = "adm_district";
-        public const string Place = "adm_place";
-        public const string DistrictHst = "hst_district";
-        public const string Road = "roa_road";
+        ItService,
+        Cemetery,
+        Prisons,
+        NotariesPublic,
+        ExhibitionCenter,
+        AutopilotServices,
+        DryCleanerLaundry,
+        InsuranceCompany,
+        TaxiService,
+        AutomotiveShop,
+        Grocery,
+        Optics,
+        Aquaparks,
+        Veterinarians,
+        BusinessCentre,
+        PreschoolEstablishment,
+        Library,
+        BotanicGarden,
+        Casino,
+        SwimmingPool,
+        SportsComplex,
+        InquiryService,
+        PaintballLazerShooting,
+        HorseRiding,
+        MonumentOfArchitectureAndTownPlanning,
+        MonumentOfScience,
+        EnterpriseOrganisation,
+        Ferry,
+        Airport,
+        BusStation,
+        RailwayStation,
+        RiverStation,
+        Port,
+        RescueServices,
+        Funicular,
+        TranslationBureaus,
+        CashDesk,
+        AutomobileSalesCentre,
+        Parking,
+        CarRental,
+        DrivingSchool,
+        PostOffice,
+        TyreFittingShop,
+        Furniture,
+        CarServiceStation,
+        OtherService,
+        Atm,
+        Workshop,
+        CarWash,
+        CarEvacuationService,
+        Bank,
+        Confectionery,
+        EverythingForHoliday,
+        ExpressMail,
+        Restaurant,
+        PublicAmenitiesCenter,
+        Delivery,
+        RepairShop,
+        WiFi,
+        PaymentTerminal,
+        Sauna,
+        BeautyShopSpa,
+        Wc,
+        WorkOfArt,
+        Antiques,
+        ConcertHall,
+        MuseumGallery,
+        Theater,
+        HouseholdAppliancesAndElectronics,
+        GoodsForChildren,
+        ClothesAndAccessories,
+        HouseholdTextile,
+        Clothes,
+        ShoeShop,
+        PerfumesAndHouseholdChemicals,
+        JewelryShop,
+        College,
+        Embassy,
+        FruitAndVegetableStore,
+        ShoppingCentre,
+        BuildingMaterials,
+        Shop,
+        Market,
+        Supermarket,
+        Hospital,
+        LaboratoryCentre,
+        Stomatology,
+        MedicalCentreDiagnostic,
+        Polyclinic,
+        MaternityHospital,
+        Pharmacy,
+        EmergencyFirstAidStation,
+        HigherEducationalEstablishment,
+        TechnicalSchool,
+        ArtSchoolCentreStudio,
+        MusicalSchool,
+        GeneralEducationSchoolGymnasiaLyceum,
+        SportSchool,
+        OtherSchool,
+        SpecializedSchool,
+        HobbyGroupCircleSchool,
+        StateAdministration,
+        Delfinarii,
+        CivilRegistryOffice,
+        Zoo,
+        PublicProsecutorOffice,
+        Court,
+        Customs,
+        ForeignCompanyRepresentative,
+        Beache,
+        Circus,
+        Stadium,
+        DoctorSAdviceByPhone,
+        NightClub,
+        RaceCours,
+        ChurchCathedralMonastery,
+        Diving,
+        FitnessSportingHall,
+        HistoryOfTheArea,
+        EntertainingComplex,
+        Tennis,
+        Bowling,
+        Billiards,
+        Golf,
+        SkatingSite,
+        OtherTypeOfSport,
+        RollerdromeGoCartTrack,
+        TouristBoat,
+        TouristBus,
+        MonumentOfNature,
+        TouristInformationCenter,
+        TouristObjects,
+        ObservationalGround,
+        SkiingSnowboarding,
+        SpeleoAndMountainTourism,
+        YachtingSailing,
+        Motosport,
+        Skydiving,
+        OrganizatorsOfOutdoorActivities,
+        OtherTypesOfOutdoorActivities,
+        EcoTourism,
+        TravelAgency,
+        HuntingForestAndFishGrowingBase,
+        OrganizationOfHuntersAndFishermen,
+        Statue,
+        ShopForHuntersAndFishermen,
+        Camping,
+        RentalOfSportingInventory,
+        RopeRoad,
+        HistoricalMonument,
+        ArcheologicalMonument,
+        MonumentOfParkArt,
+        ClothesE,
+        ShoeShopE,
+        AutomotiveShopE,
+        WorkOfArtE,
+        AntiquesE,
+        HouseholdAppliancesAndElectronicsE,
+        GoodsForChildrenE,
+        ClothesAndAccessoriesE,
+        HouseholdTextileE,
+        FurnitureE,
+        PerfumesAndHouseholdChemicalsE,
+        JewelryShopE,
+        GroceryE,
+        FruitAndVegetableStoreE,
+        SportShopsE,
+        BuildingMaterialsE,
+        DecorAndGift,
+        Hostel,
+        UndergroundRailwayStation,
+        DecorAndGiftE,
+        FastFood,
+        RealEstateAgencies,
+        CafeBar,
+        PizzaRestaurant,
+        BooksStationeryE,
+        BooksStationery,
+        Sanatorium,
+        RecreationCampBoardingHouse,
+        PetShop,
+        HangGliding,
+        PalacesAndCommunityCentres,
+        MotorLicencingInspection,
+        CentresSai,
+        Mound,
+        ChronicleCity,
+        Settlement,
+        BurialMound,
+        GroundBurial,
+        PoliceStation,
+        ElectricVehicleChargingStation,
+        PetrolStation,
+        GasFillingStation,
+        GovernmentAgenciesAndEnterprises,
+        ParkSquare,
+        Cinema,
+        HotelAndMotel,
+        EthnoObject,
+        Dendropark,
+        BoardingHouses,
+        CenterOfSocialServices,
+        RehabilitationCenter,
+        ChildrenRecreationActivities,
+        SportShops,
+        IndustrialEnterprise,
+        AirportTerminal,
+        HouseholdGoods,
+        Address,
+        Street,
+        SettlementAdministrative,
+        Country,
+        Level1,
+        Level2,
+        Level3,
+        District,
+        Place,
+        DistrictHst,
+        Road
+    }
+
+    public static class CategoriesExtensions
+    {
+        public static string ToRequestString(this Categories category) => category switch
+        {
+            Categories.ItService => "poi_it_servis",
+            Categories.Cemetery => "poi_cemetery",
+            Categories.Prisons => "poi_prisions",
+            Categories.NotariesPublic => "poi_notaries_public",
+            Categories.ExhibitionCenter => "poi_exhibition_center",
+            Categories.AutopilotServices => "poi_autopilot_services",
+            Categories.DryCleanerLaundry => "poi_dry_cleaner_laundry",
+            Categories.InsuranceCompany => "poi_insurance_company",
+            Categories.TaxiService => "poi_taxi_service",
+            Categories.AutomotiveShop => "poi_automotive_shop",
+            Categories.Grocery => "poi_grocery",
+            Categories.Optics => "poi_optics",
+            Categories.Aquaparks => "poi_aquaparks",
+            Categories.Veterinarians => "poi_veterinarians",
+            Categories.BusinessCentre => "poi_business_centre",
+            Categories.PreschoolEstablishment => "poi_preschool_establishment",
+            Categories.Library => "poi_library",
+            Categories.BotanicGarden => "poi_botanic_garden",
+            Categories.Casino => "poi_casino",
+            Categories.SwimmingPool => "poi_swimming_pool",
+            Categories.SportsComplex => "poi_sports_complexe",
+            Categories.InquiryService => "poi_inquiry_service",
+            Categories.PaintballLazerShooting => "poi_paintball_lazer_shooting",
+            Categories.HorseRiding => "poi_horse_riding",
+            Categories.MonumentOfArchitectureAndTownPlanning => "poi_monument_of_architecture_and_town_planning",
+            Categories.MonumentOfScience => "poi_monument_of_science",
+            Categories.EnterpriseOrganisation => "poi_enterprise_organisation",
+            Categories.Ferry => "poi_ferry",
+            Categories.Airport => "poi_airport",
+            Categories.BusStation => "poi_bus_station",
+            Categories.RailwayStation => "poi_railway_station",
+            Categories.RiverStation => "poi_river_station",
+            Categories.Port => "poi_port",
+            Categories.RescueServices => "poi_rescue_services",
+            Categories.Funicular => "poi_funicular",
+            Categories.TranslationBureaus => "poi_translation_bureaus",
+            Categories.CashDesk => "poi_cash_desk",
+            Categories.AutomobileSalesCentre => "poi_automobile_sales_centre",
+            Categories.Parking => "poi_parking",
+            Categories.CarRental => "poi_car_rental",
+            Categories.DrivingSchool => "poi_driving_school",
+            Categories.PostOffice => "poi_post_office",
+            Categories.TyreFittingShop => "poi_tyre_fitting_shop",
+            Categories.Furniture => "poi_furniture",
+            Categories.CarServiceStation => "poi_car_service_station",
+            Categories.OtherService => "poi_other_service",
+            Categories.Atm => "poi_atm",
+            Categories.Workshop => "poi_workshop",
+            Categories.CarWash => "poi_car_wash",
+            Categories.CarEvacuationService => "poi_car_evacuation_service",
+            Categories.Bank => "poi_bank",
+            Categories.Confectionery => "poi_confectionery",
+            Categories.EverythingForHoliday => "poi_everything_for_holiday",
+            Categories.ExpressMail => "poi_express_mail",
+            Categories.Restaurant => "poi_restaurant",
+            Categories.PublicAmenitiesCenter => "poi_public_amenities_center",
+            Categories.Delivery => "poi_delivery",
+            Categories.RepairShop => "poi_repair_shop",
+            Categories.WiFi => "poi_wi_fi",
+            Categories.PaymentTerminal => "poi_payment_terminal",
+            Categories.Sauna => "poi_sauna",
+            Categories.BeautyShopSpa => "poi_beauty_shop_spa",
+            Categories.Wc => "poi_wc",
+            Categories.WorkOfArt => "poi_work_of_art",
+            Categories.Antiques => "poi_antiques",
+            Categories.ConcertHall => "poi_concert_hall",
+            Categories.MuseumGallery => "poi_museum_gallery",
+            Categories.Theater => "poi_theater",
+            Categories.HouseholdAppliancesAndElectronics => "poi_houshold_appliances_and_electronics",
+            Categories.GoodsForChildren => "poi_goods_for_children",
+            Categories.ClothesAndAccessories => "poi_clothes_and_accessories",
+            Categories.HouseholdTextile => "poi_household_textile",
+            Categories.Clothes => "poi_clothes",
+            Categories.ShoeShop => "poi_shoe_shop",
+            Categories.PerfumesAndHouseholdChemicals => "poi_parfumes_and_houshold_chemicals",
+            Categories.JewelryShop => "poi_jewelry_shop",
+            Categories.College => "poi_college",
+            Categories.Embassy => "poi_embassy",
+            Categories.FruitAndVegetableStore => "poi_fruit_and_vegetable_store",
+            Categories.ShoppingCentre => "poi_shopping_centre",
+            Categories.BuildingMaterials => "poi_building_materials",
+            Categories.Shop => "poi_shop",
+            Categories.Market => "poi_market",
+            Categories.Supermarket => "poi_supermarket",
+            Categories.Hospital => "poi_hospital",
+            Categories.LaboratoryCentre => "poi_laboratory_centre",
+            Categories.Stomatology => "poi_stomatology",
+            Categories.MedicalCentreDiagnostic => "poi_medical_centre_diagnostic",
+            Categories.Polyclinic => "poi_policlinic",
+            Categories.MaternityHospital => "poi_maternity_hospital",
+            Categories.Pharmacy => "poi_pharmacy",
+            Categories.EmergencyFirstAidStation => "poi_emergency_first_aid_station",
+            Categories.HigherEducationalEstablishment => "poi_higher_educational_establishment",
+            Categories.TechnicalSchool => "poi_technical_school",
+            Categories.ArtSchoolCentreStudio => "poi_art_school_centre_studio",
+            Categories.MusicalSchool => "poi_musical_school",
+            Categories.GeneralEducationSchoolGymnasiaLyceum => "poi_general_education_school_gymnasia_lyceum",
+            Categories.SportSchool => "poi_sport_school",
+            Categories.OtherSchool => "poi_other_school",
+            Categories.SpecializedSchool => "poi_specialized_school",
+            Categories.HobbyGroupCircleSchool => "poi_hobby_group_circle_school",
+            Categories.StateAdministration => "poi_state_administration",
+            Categories.Delfinarii => "poi_del_finariy",
+            Categories.CivilRegistryOffice => "poi_civil_registry_office",
+            Categories.Zoo => "poi_zoo",
+            Categories.PublicProsecutorOffice => "poi_public_prosecutor_office",
+            Categories.Court => "poi_court",
+            Categories.Customs => "poi_customs",
+            Categories.ForeignCompanyRepresentative => "poi_foreign_company_representative",
+            Categories.Beache => "poi_beache",
+            Categories.Circus => "poi_circus",
+            Categories.Stadium => "poi_stadium",
+            Categories.DoctorSAdviceByPhone => "poi_doctor_s_advice_by_phone",
+            Categories.NightClub => "poi_night_club",
+            Categories.RaceCours => "poi_race_cours",
+            Categories.ChurchCathedralMonastery => "poi_church_cathedral_monastery",
+            Categories.Diving => "poi_diving",
+            Categories.FitnessSportingHall => "poi_fitness_sporting_hall",
+            Categories.HistoryOfTheArea => "poi_history_of_the_area",
+            Categories.EntertainingComplex => "poi_entertaining_complex",
+            Categories.Tennis => "poi_tennis",
+            Categories.Bowling => "poi_bowling",
+            Categories.Billiards => "poi_billiards",
+            Categories.Golf => "poi_golf",
+            Categories.SkatingSite => "poi_skating_site",
+            Categories.OtherTypeOfSport => "poi_other_type_of_sport",
+            Categories.RollerdromeGoCartTrack => "poi_rollerdrome_go_cart_track",
+            Categories.TouristBoat => "poi_tourist_boat",
+            Categories.TouristBus => "poi_tourist_bus",
+            Categories.MonumentOfNature => "poi_monument_of_nature",
+            Categories.TouristInformationCenter => "poi_tourist_information_center",
+            Categories.TouristObjects => "poi_tourist_objects",
+            Categories.ObservationalGround => "poi_observational_ground",
+            Categories.SkiingSnowboarding => "poi_skiing_snowboarding",
+            Categories.SpeleoAndMountainTourism => "poi_speleo_and_mountain_tourism",
+            Categories.YachtingSailing => "poi_yachting_sailing",
+            Categories.Motosport => "poi_motosport",
+            Categories.Skydiving => "poi_skydiving",
+            Categories.OrganizatorsOfOutdoorActivities => "poi_organizetors_of_outdoor_activities",
+            Categories.OtherTypesOfOutdoorActivities => "poi_other_types_of_outdoor_activities",
+            Categories.EcoTourism => "poi_eco_tourism",
+            Categories.TravelAgency => "poi_travel_agency",
+            Categories.HuntingForestAndFishGrowingBase => "poi_hunting_forest_and_fish_growing_base",
+            Categories.OrganizationOfHuntersAndFishermen => "poi_organization_of_hunters_and_fishermen",
+            Categories.Statue => "poi_statue",
+            Categories.ShopForHuntersAndFishermen => "poi_shop_for_hunters_and_fishermen",
+            Categories.Camping => "poi_camping",
+            Categories.RentalOfSportingInventory => "poi_rental_of_sporting_inventory",
+            Categories.RopeRoad => "poi_rope_road",
+            Categories.HistoricalMonument => "poi_historical_monument",
+            Categories.ArcheologicalMonument => "poi_archeological_monument",
+            Categories.MonumentOfParkArt => "poi_monument_of_park_art",
+            Categories.ClothesE => "poi_clothes_e",
+            Categories.ShoeShopE => "poi_shoe_shop_e",
+            Categories.AutomotiveShopE => "poi_automotive_shop_e",
+            Categories.WorkOfArtE => "poi_work_of_art_e",
+            Categories.AntiquesE => "poi_antiques_e",
+            Categories.HouseholdAppliancesAndElectronicsE => "poi_houshold_appliances_and_electronics_e",
+            Categories.GoodsForChildrenE => "poi_goods_for_children_e",
+            Categories.ClothesAndAccessoriesE => "poi_clothes_and_accessories_e",
+            Categories.HouseholdTextileE => "poi_household_textile_e",
+            Categories.FurnitureE => "poi_furniture_e",
+            Categories.PerfumesAndHouseholdChemicalsE => "poi_parfumes_and_houshold_chemicals_e",
+            Categories.JewelryShopE => "poi_jewelry_shop_e",
+            Categories.GroceryE => "poi_grocery_e",
+            Categories.FruitAndVegetableStoreE => "poi_fruit_and_vegetable_store_e",
+            Categories.SportShopsE => "poi_sport_shops_e",
+            Categories.BuildingMaterialsE => "poi_building_materials_e",
+            Categories.DecorAndGift => "poi_decor_and_gift",
+            Categories.Hostel => "poi_hostel",
+            Categories.UndergroundRailwayStation => "poi_underground_railway_station",
+            Categories.DecorAndGiftE => "poi_decor_and_gift_e",
+            Categories.FastFood => "poi_fast_food",
+            Categories.RealEstateAgencies => "poi_real_estate_agencies",
+            Categories.CafeBar => "poi_cafe_bar",
+            Categories.PizzaRestaurant => "poi_pizza_restaurant",
+            Categories.BooksStationeryE => "poi_books_stationery_e",
+            Categories.BooksStationery => "poi_books_stationery",
+            Categories.Sanatorium => "poi_sanatorium",
+            Categories.RecreationCampBoardingHouse => "poi_recreation_camp_boarding_house",
+            Categories.PetShop => "poi_pet_shop",
+            Categories.HangGliding => "poi_hang_gliding",
+            Categories.PalacesAndCommunityCentres => "poi_palaces_and_community_centres",
+            Categories.MotorLicencingInspection => "poi_motor_licencing_inspection",
+            Categories.CentresSai => "poi_centres_sai",
+            Categories.Mound => "poi_mound",
+            Categories.ChronicleCity => "poi_chronicle city", //!OG: poi_chronicle city
+            Categories.Settlement => "poi_settlement",
+            Categories.BurialMound => "poi_burial_mound",
+            Categories.GroundBurial => "poi_ground_burial",
+            Categories.PoliceStation => "poi_police_station",
+            Categories.ElectricVehicleChargingStation => "poi_electric_vehicle_charging_station",
+            Categories.PetrolStation => "poi_petrol_station",
+            Categories.GasFillingStation => "poi_gas_filling_station",
+            Categories.GovernmentAgenciesAndEnterprises => "poi_government_agencies_and_enterprises",
+            Categories.ParkSquare => "poi_park_square",
+            Categories.Cinema => "poi_cinema",
+            Categories.HotelAndMotel => "poi_hotel_and_motel",
+            Categories.EthnoObject => "poi_ethno_object",
+            Categories.Dendropark => "poi_dendropark",
+            Categories.BoardingHouses => "poi_boarding_houses",
+            Categories.CenterOfSocialServices => "poi_center_of_social_services",
+            Categories.RehabilitationCenter => "poi_rehabilitation_center",
+            Categories.ChildrenRecreationActivities => "poi_children_recreation_activities",
+            Categories.SportShops => "poi_sport_shops",
+            Categories.IndustrialEnterprise => "poi_industrial_enterprise",
+            Categories.AirportTerminal => "poi_airport_terminal",
+            Categories.HouseholdGoods => "poi_household_goods",
+            Categories.Address => "adr_address",
+            Categories.Street => "adr_street",
+            Categories.SettlementAdministrative => "adm_settlement",
+            Categories.Country => "adm_country",
+            Categories.Level1 => "adm_level1",
+            Categories.Level2 => "adm_level2",
+            Categories.Level3 => "adm_level3",
+            Categories.District => "adm_district",
+            Categories.Place => "adm_place",
+            Categories.DistrictHst => "hst_district",
+            Categories.Road => "roa_road",
+            _ => throw new ArgumentOutOfRangeException(nameof(category), category, null)
+        };
     }
 }
