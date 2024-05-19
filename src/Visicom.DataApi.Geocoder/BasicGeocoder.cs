@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Net.Http.Json;
 using System.Text;
 using Visicom.DataApi.Geocoder.Abstractions;
 using Visicom.DataApi.Geocoder.Enums;
@@ -27,9 +28,13 @@ public class BasicGeocoder : IGeocoder
             .ConfigureAwait(false)
             .GetAwaiter().GetResult();
 
-    public Task<MapPoint> GetCoordinatesAsync(string searchTerm, bool isByWholeWord = false)
+    public async Task<MapPoint> GetCoordinatesAsync(string searchTerm, bool isByWholeWord = false)
     {
         var requestUrl = BuildRequestUrl(searchTerm, isByWholeWord);
+        var response = await _httpClient.GetAsync(requestUrl);
+        var point = response.EnsureSuccessStatusCode()
+            .Content
+            .ReadFromJsonAsync<Data.Response>();
         throw new NotImplementedException();
     }
 
