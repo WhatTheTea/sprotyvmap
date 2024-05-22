@@ -10,10 +10,10 @@ namespace Visicom.DataApi.Geocoder;
 
 public class BasicGeocoder : IGeocoder
 {
-    private const string requestBase = "https://api.visicom.ua/data-api/5.0/";
+    private const string RequestBase = "https://api.visicom.ua/data-api/5.0/";
     
     private IRequestOptions _options;
-    private HttpClient _httpClient;
+    private readonly HttpClient _httpClient;
 
     public BasicGeocoder(HttpClient httpClient, IRequestOptions options)
     {
@@ -32,15 +32,17 @@ public class BasicGeocoder : IGeocoder
     {
         var requestUrl = BuildRequestUrl(searchTerm, isByWholeWord);
         var response = await _httpClient.GetAsync(requestUrl);
-        var point = response.EnsureSuccessStatusCode()
+        var data = await response.EnsureSuccessStatusCode()
             .Content
             .ReadFromJsonAsync<Data.Response>();
-        throw new NotImplementedException();
+        var point = new MapPoint(data?.GeoCentroid.Coordinates[0] ?? 0, 
+            data?.GeoCentroid.Coordinates[1] ?? 0);
+        return point;
     }
 
     private string BuildRequestUrl(string searchTerm, bool isByWholeWord)
     {
-        var requestBuilder = new StringBuilder(requestBase);
+        var requestBuilder = new StringBuilder(RequestBase);
         
         requestBuilder.AppendEndpoint(_options.Language.ToRequestString())
             .AppendEndpoint("geocode.json")
