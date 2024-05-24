@@ -1,33 +1,13 @@
-﻿using System;
-using System.IO;
+using System;
 using System.Linq;
-using System.Net.Mime;
 using FluentAssertions;
-using JetBrains.Annotations;
-using RichardSzalay.MockHttp;
 using Xunit;
 
 namespace WhatTheTea.SprotyvMap.WebScraper.Tests;
 
-[TestSubject(typeof(SprotyvInUa.WebScraper))]
-public class SprotyvInUaScraperTest
+public abstract class SprotyvInUaTestsBase
 {
-    private const string SiteUri = "https://sprotyv.in.ua/";
-    private const string TestSiteUri = "TestData/sprotyv.in.ua.htm";
-
-    private SprotyvInUa.WebScraper Scraper { get; set; }
-    
-    public SprotyvInUaScraperTest()
-    {
-        var httpMock = new MockHttpMessageHandler();
-        var testPage = File.ReadAllText(TestSiteUri);
-        httpMock.When(SiteUri)
-            .Respond(MediaTypeNames.Text.Html, testPage);
-        var httpClient = httpMock.ToHttpClient();
-
-        Scraper = SprotyvInUa.WebScraper.Create(httpClient)
-            .GetAwaiter().GetResult();
-    }
+    protected SprotyvInUa.WebScraper Scraper { get; set; }
 
     [Fact]
     public void FirstNodeIsVinnytsky()
