@@ -4,6 +4,7 @@ using Visicom.DataApi.Geocoder.Abstractions;
 using Visicom.DataApi.Geocoder.Enums;
 using Visicom.DataApi.Geocoder.Extensions;
 using WhatTheTea.SprotyvMap.Data;
+using WhatTheTea.SprotyvMap.Data.Primitives;
 
 namespace Visicom.DataApi.Geocoder;
 
