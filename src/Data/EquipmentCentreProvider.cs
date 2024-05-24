@@ -1,6 +1,8 @@
+using WhatTheTea.SprotyvMap.Data.Abstractions;
+
 namespace WhatTheTea.SprotyvMap.Data;
 
-public class PointProvider : IPointProvider
+public class EquipmentCentreProvider : IEquipmentCentreProvider
 {
     public EquipmentCentre GetPoint(int district, int id)
         => GetPointAsync(district, id)

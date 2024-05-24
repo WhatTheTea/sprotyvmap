@@ -1,6 +1,6 @@
-﻿namespace WhatTheTea.SprotyvMap.Data
+﻿namespace WhatTheTea.SprotyvMap.Data.Abstractions
 {
-    public interface IPointProvider
+    public interface IEquipmentCentreProvider
     {
         EquipmentCentre GetPoint(int district, int id);
         List<EquipmentCentre> GetPointsByDistrict(int district);
