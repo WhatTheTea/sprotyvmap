@@ -1,13 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Net.Mime;
-using System.Threading.Tasks;
 using FluentAssertions;
 using JetBrains.Annotations;
 using RichardSzalay.MockHttp;
-using WhatTheTea.SprotyvMap.WebScraper;
 using Xunit;
 
 namespace WhatTheTea.SprotyvMap.WebScraper.Tests;
