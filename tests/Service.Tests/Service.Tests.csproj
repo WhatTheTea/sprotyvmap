@@ -7,8 +7,8 @@
 
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
-        <AssemblyName>SprotyvMap.Data.Tests</AssemblyName>
-        <RootNamespace>WhatTheTea.SprotyvMap.Data.Tests</RootNamespace>
+        <AssemblyName>SprotyvMap.Service.Tests</AssemblyName>
+        <RootNamespace>WhatTheTea.SprotyvMap.Service.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -28,7 +28,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\Data\Data.csproj" />
+      <ProjectReference Include="..\..\src\Service\Service.csproj" />
+      <ProjectReference Include="..\..\src\Shared\Shared.csproj" />
     </ItemGroup>
 
 </Project>

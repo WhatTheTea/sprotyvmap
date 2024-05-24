@@ -1,7 +1,7 @@
-using WhatTheTea.SprotyvMap.Data.Abstractions;
-using WhatTheTea.SprotyvMap.Data.Primitives;
+using WhatTheTea.SprotyvMap.Shared.Abstractions;
+using WhatTheTea.SprotyvMap.Shared.Primitives;
 
-namespace WhatTheTea.SprotyvMap.Data;
+namespace WhatTheTea.SprotyvMap.Service;
 
 public class EquipmentCentreProvider : IEquipmentCentreProvider
 {

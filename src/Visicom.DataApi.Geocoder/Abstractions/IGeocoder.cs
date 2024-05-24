@@ -1,5 +1,4 @@
-using WhatTheTea.SprotyvMap.Data;
-using WhatTheTea.SprotyvMap.Data.Primitives;
+using WhatTheTea.SprotyvMap.Shared.Primitives;
 
 namespace Visicom.DataApi.Geocoder.Abstractions;
 

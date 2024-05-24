@@ -1,6 +1,6 @@
-﻿using WhatTheTea.SprotyvMap.Data.Primitives;
+﻿using WhatTheTea.SprotyvMap.Shared.Primitives;
 
-namespace WhatTheTea.SprotyvMap.Data.Abstractions
+namespace WhatTheTea.SprotyvMap.Shared.Abstractions
 {
     public interface IEquipmentCentreProvider
     {

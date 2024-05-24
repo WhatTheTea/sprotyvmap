@@ -1,8 +1,7 @@
 using RichardSzalay.MockHttp;
-using WhatTheTea.SprotyvMap.Data;
-using WhatTheTea.SprotyvMap.Data.Abstractions;
+using WhatTheTea.SprotyvMap.Shared.Abstractions;
 
-namespace WhatTheTea.SprotyvMap.Data.Tests.Unit;
+namespace WhatTheTea.SprotyvMap.Service.Tests.Unit;
 
 public class EquipmentCentreProviderTests
 {

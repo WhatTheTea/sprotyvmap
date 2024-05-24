@@ -3,8 +3,7 @@ using System.Text;
 using Visicom.DataApi.Geocoder.Abstractions;
 using Visicom.DataApi.Geocoder.Enums;
 using Visicom.DataApi.Geocoder.Extensions;
-using WhatTheTea.SprotyvMap.Data;
-using WhatTheTea.SprotyvMap.Data.Primitives;
+using WhatTheTea.SprotyvMap.Shared.Primitives;
 
 namespace Visicom.DataApi.Geocoder;
 
