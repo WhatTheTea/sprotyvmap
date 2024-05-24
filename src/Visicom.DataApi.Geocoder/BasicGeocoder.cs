@@ -1,10 +1,9 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Net.Http.Json;
 using System.Text;
 using Visicom.DataApi.Geocoder.Abstractions;
 using Visicom.DataApi.Geocoder.Enums;
 using Visicom.DataApi.Geocoder.Extensions;
-using WhatTheTea.SprotyvMap.Primitives;
+using WhatTheTea.SprotyvMap.Data;
 
 namespace Visicom.DataApi.Geocoder;
 

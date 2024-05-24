@@ -8,8 +8,4 @@
     <AssemblyName>SprotyvMap.Data</AssemblyName>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Primitives\Primitives.csproj" />
-  </ItemGroup>
-
 </Project>
