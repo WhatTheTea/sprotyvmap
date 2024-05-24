@@ -5,6 +5,15 @@ namespace WhatTheTea.SprotyvMap.Service;
 
 public class EquipmentCentreProvider : IEquipmentCentreProvider
 {
+    private readonly IDataProvider _dataProvider;
+    private readonly IMapPointProvider _mapPointProvider;
+
+    public EquipmentCentreProvider(IDataProvider dataProvider, IMapPointProvider mapPointProvider)
+    {
+        _dataProvider = dataProvider;
+        _mapPointProvider = mapPointProvider;
+    }
+
     public EquipmentCentre GetEquipmentCentre(int district, int id)
         => GetEquipmentCentreAsync(district, id)
             .ConfigureAwait(false)
@@ -18,9 +27,12 @@ public class EquipmentCentreProvider : IEquipmentCentreProvider
         => GetAllEquipmentCentresAsync().ConfigureAwait(false)
             .GetAwaiter().GetResult();
 
-    public Task<EquipmentCentre> GetEquipmentCentreAsync(int district, int id)
+    public async Task<EquipmentCentre> GetEquipmentCentreAsync(int district, int id)
     {
-        throw new NotImplementedException();
+        var data = await _dataProvider.GetEquipmentCentreAsync(district, id);
+        var mapPoint = await _mapPointProvider.GetPoint(data.Location);
+
+        return data with { Point = mapPoint };
     }
 
     public Task<List<EquipmentCentre>> GetEquipmentCentresByDistrictAsync(int district)
