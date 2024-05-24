@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\WebScraper\WebScraper.csproj" />
+    <ProjectReference Include="..\..\src\SprotyvInUaScraper\SprotyvInUaScraper.csproj" />
   </ItemGroup>
 
   <ItemGroup>

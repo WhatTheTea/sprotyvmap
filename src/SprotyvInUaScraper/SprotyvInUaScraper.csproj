@@ -4,12 +4,16 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>WhatTheTea.SprotyvMap.WebScraper</RootNamespace>
-    <AssemblyName>SprotyvMap.WebScraper</AssemblyName>
+    <RootNamespace>WhatTheTea.SprotyvMap.SprotyvInUa</RootNamespace>
+    <AssemblyName>SprotyvMap.SprotyvInUa</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack" Version="1.11.61" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 
 </Project>

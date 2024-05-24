@@ -1,9 +1,10 @@
 ﻿using HtmlAgilityPack;
-using WhatTheTea.SprotyvMap.WebScraper.Data;
+using WhatTheTea.SprotyvMap.Shared.Abstractions;
+using WhatTheTea.SprotyvMap.Shared.Primitives;
 
-namespace WhatTheTea.SprotyvMap.WebScraper.SprotyvInUa;
+namespace WhatTheTea.SprotyvMap.SprotyvInUa;
 
-public class WebScraper : IEquipmentCentreDataScraper
+public class WebScraper : IDataProvider
 {
     private const string SprotyvInUaUri = "https://sprotyv.in.ua/";
     
@@ -41,11 +42,7 @@ public class WebScraper : IEquipmentCentreDataScraper
             var centres = GetEquipmentCentres(districtId);
             var name = SelectNode(XPathBuilder.DistrictNameXPath(districtId)).InnerText;
             
-            yield return new District
-            {
-                EquipmentCentres = centres,
-                Name = name
-            };
+            yield return new District(districtId,name,centres);
         }
     }
 
@@ -71,7 +68,8 @@ public class WebScraper : IEquipmentCentreDataScraper
         return new EquipmentCentre(
             SelectCentreTitle(districtId, centreId),
             SelectCentreInformation(districtId, centreId),
-            SelectCentreLocation(districtId, centreId)
+            SelectCentreLocation(districtId, centreId),
+            new MapPoint()
         );
     }
 
@@ -97,4 +95,15 @@ public class WebScraper : IEquipmentCentreDataScraper
         Document.DocumentNode
             .SelectSingleNode(xpath);
 
+    public async Task<EquipmentCentre> GetEquipmentCentreAsync(int districtId, int centreId)
+    {
+        await LoadDataAsync();
+        return GetEquipmentCentre(districtId, centreId);
+    }
+
+    public async Task<IEnumerable<District>> GetAllDistrictsAsync()
+    {
+        await LoadDataAsync();
+        return GetAllDistricts();
+    }
 }

@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "src\Shared\Shared
 		{A1D4865F-87CC-44BA-B995-300166526F57} = {A1D4865F-87CC-44BA-B995-300166526F57}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebScraper", "src\WebScraper\WebScraper.csproj", "{A1D4865F-87CC-44BA-B995-300166526F57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SprotyvInUaScraper", "src\SprotyvInUaScraper\SprotyvInUaScraper.csproj", "{A1D4865F-87CC-44BA-B995-300166526F57}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visicom.DataApi.Geocoder", "src\Visicom.DataApi.Geocoder\Visicom.DataApi.Geocoder.csproj", "{910D9626-3A4F-4C82-AF0F-3B9DEFBC36E9}"
 EndProject
