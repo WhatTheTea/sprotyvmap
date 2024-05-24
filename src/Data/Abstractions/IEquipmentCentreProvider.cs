@@ -2,12 +2,12 @@
 {
     public interface IEquipmentCentreProvider
     {
-        EquipmentCentre GetPoint(int district, int id);
-        List<EquipmentCentre> GetPointsByDistrict(int district);
-        List<EquipmentCentre> GetAllPoints();
+        EquipmentCentre GetEquipmentCentre(int district, int id);
+        List<EquipmentCentre> GetEquipmentCentresByDistrict(int district);
+        List<EquipmentCentre> GetAllEquipmentCentres();
         
-        Task<EquipmentCentre> GetPointAsync(int district, int id);
-        Task<List<EquipmentCentre>> GetPointsByDistrictAsync(int district);
-        Task<List<EquipmentCentre>> GetAllPointsAsync();
+        Task<EquipmentCentre> GetEquipmentCentreAsync(int district, int id);
+        Task<List<EquipmentCentre>> GetEquipmentCentresByDistrictAsync(int district);
+        Task<List<EquipmentCentre>> GetAllEquipmentCentresAsync();
     }
 }

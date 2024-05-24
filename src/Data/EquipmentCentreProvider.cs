@@ -4,30 +4,30 @@ namespace WhatTheTea.SprotyvMap.Data;
 
 public class EquipmentCentreProvider : IEquipmentCentreProvider
 {
-    public EquipmentCentre GetPoint(int district, int id)
-        => GetPointAsync(district, id)
+    public EquipmentCentre GetEquipmentCentre(int district, int id)
+        => GetEquipmentCentreAsync(district, id)
             .ConfigureAwait(false)
             .GetAwaiter().GetResult();
 
-    public List<EquipmentCentre> GetPointsByDistrict(int district)
-        => GetPointsByDistrictAsync(district).ConfigureAwait(false)
+    public List<EquipmentCentre> GetEquipmentCentresByDistrict(int district)
+        => GetEquipmentCentresByDistrictAsync(district).ConfigureAwait(false)
             .GetAwaiter().GetResult();
 
-    public List<EquipmentCentre> GetAllPoints()
-        => GetAllPointsAsync().ConfigureAwait(false)
+    public List<EquipmentCentre> GetAllEquipmentCentres()
+        => GetAllEquipmentCentresAsync().ConfigureAwait(false)
             .GetAwaiter().GetResult();
 
-    public Task<EquipmentCentre> GetPointAsync(int district, int id)
+    public Task<EquipmentCentre> GetEquipmentCentreAsync(int district, int id)
     {
         throw new NotImplementedException();
     }
 
-    public Task<List<EquipmentCentre>> GetPointsByDistrictAsync(int district)
+    public Task<List<EquipmentCentre>> GetEquipmentCentresByDistrictAsync(int district)
     {
         throw new NotImplementedException();
     }
 
-    public Task<List<EquipmentCentre>> GetAllPointsAsync()
+    public Task<List<EquipmentCentre>> GetAllEquipmentCentresAsync()
     {
         throw new NotImplementedException();
     }
