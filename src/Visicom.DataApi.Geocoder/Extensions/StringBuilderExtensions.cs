@@ -11,7 +11,23 @@ public static class StringBuilderExtensions
 
     public static StringBuilder AppendParam(this StringBuilder builder, string param, string value,
         bool isFirst = false)
-        => string.IsNullOrWhiteSpace(value)
-            ? builder.Append(isFirst ? '?' : '&').AppendFormat("{0}={1}", param, value)
-            : builder;
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return builder;
+        }
+        
+        if (isFirst)
+        {
+            builder[^1] = '?';
+        }
+        else
+        {
+            builder.Append('&');
+        }
+
+        return builder.Append(param)
+            .Append('=')
+            .Append(value);
+    }
 }
