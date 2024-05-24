@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using FluentAssertions;
 using JetBrains.Annotations;
@@ -24,7 +25,7 @@ public class SprotyvInUaScraperTest
         var httpMock = new MockHttpMessageHandler();
         var testPage = File.ReadAllText(TestSiteUri);
         httpMock.When(SiteUri)
-            .Respond("text/html", testPage);
+            .Respond(MediaTypeNames.Text.Html, testPage);
         var httpClient = httpMock.ToHttpClient();
 
         Scraper = SprotyvInUa.WebScraper.Create(httpClient)
