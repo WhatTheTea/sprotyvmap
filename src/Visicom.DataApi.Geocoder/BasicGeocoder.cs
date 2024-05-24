@@ -35,8 +35,8 @@ public class BasicGeocoder : IGeocoder
         var data = await response.EnsureSuccessStatusCode()
             .Content
             .ReadFromJsonAsync<Data.Response>();
-        var point = new MapPoint(data?.GeoCentroid.Coordinates[0] ?? 0, 
-            data?.GeoCentroid.Coordinates[1] ?? 0);
+        var point = new MapPoint(data?.GeoCentroid.Coordinates[1] ?? 0, 
+            data?.GeoCentroid.Coordinates[0] ?? 0);
         return point;
     }
 
