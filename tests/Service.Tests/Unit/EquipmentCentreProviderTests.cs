@@ -2,6 +2,8 @@ using System.Net.Mime;
 using System.Web;
 using FluentAssertions;
 using RichardSzalay.MockHttp;
+using Visicom.DataApi.Geocoder;
+using Visicom.DataApi.Geocoder.Enums;
 using WhatTheTea.SprotyvMap.Shared.Abstractions;
 using WhatTheTea.SprotyvMap.Shared.Primitives;
 using WhatTheTea.SprotyvMap.SprotyvInUa;
@@ -25,10 +27,12 @@ public class EquipmentCentreProviderTests
         MockSprotyvInUa(httpMock);
         MockVisicomDataApi(httpMock);
         var httpClient = httpMock.ToHttpClient();
-        
-        IMapPointProvider mapPointProvider = new VisicomMapPointProvider(httpClient);
+
+        var requestOptions = new RequestOptions(Languages.Ukrainian, "APIKEY");
+        IMapPointProvider mapPointProvider = new VisicomMapPointProvider(httpClient, requestOptions);
         IDataProvider dataProvider = WebScraper.Create(httpClient)
             .GetAwaiter().GetResult();
+        
         EquipmentCentreProvider = new EquipmentCentreProvider(dataProvider, mapPointProvider);
     }
 
