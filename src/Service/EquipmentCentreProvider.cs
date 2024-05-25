@@ -30,7 +30,7 @@ public class EquipmentCentreProvider : IEquipmentCentreProvider
     public async Task<EquipmentCentre> GetEquipmentCentreAsync(int district, int id)
     {
         var data = await _dataProvider.GetEquipmentCentreAsync(district, id);
-        var mapPoint = await _mapPointProvider.GetPoint(data.Location);
+        var mapPoint = await _mapPointProvider.GetPoint(data.Information);
 
         return data with { Point = mapPoint };
     }

@@ -14,7 +14,9 @@ public class EquipmentCentreProviderTests
 {
     private const string VinnytskyOtccAddress = "м. Вінниця, вул. Данила Галицького, 31";
     private static string VinnytskyOtccRequest =>
-        "https://api.visicom.ua/data-api/5.0/uk/geocode.json?key=APIKEY&t=" + HttpUtility.UrlEncode(VinnytskyOtccAddress);
+        "https://api.visicom.ua/data-api/5.0/uk/geocode.json?key=APIKEY&t=" 
+        + HttpUtility.UrlEncode(VinnytskyOtccAddress)
+        + "&order=relevance";
     private const string VinnytskyOtccResponsePath = "TestData/geocode.json";
     private const string SprotyvInUaUrl = "https://sprotyv.in.ua/";
     private const string SprotyvInUaPath = "TestData/sprotyv.in.ua.htm";
