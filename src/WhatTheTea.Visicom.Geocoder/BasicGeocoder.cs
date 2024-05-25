@@ -1,11 +1,11 @@
 using System.Net.Http.Json;
 using System.Text;
-using Visicom.DataApi.Geocoder.Abstractions;
-using Visicom.DataApi.Geocoder.Enums;
-using Visicom.DataApi.Geocoder.Extensions;
+using WhatTheTea.Visicom.Geocoder.Enums;
+using WhatTheTea.Visicom.Geocoder.Extensions;
 using WhatTheTea.SprotyvMap.Shared.Primitives;
+using WhatTheTea.Visicom.Geocoder.Abstractions;
 
-namespace Visicom.DataApi.Geocoder;
+namespace WhatTheTea.Visicom.Geocoder;
 
 public class BasicGeocoder : IGeocoder
 {

@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace Visicom.DataApi.Geocoder.Extensions;
+namespace WhatTheTea.Visicom.Geocoder.Extensions;
 /// <summary>
 /// Request builder extensions for StringBuilder
 /// </summary>

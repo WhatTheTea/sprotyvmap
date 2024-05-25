@@ -10,7 +10,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Shared\Shared.csproj" />
-      <ProjectReference Include="..\Visicom.DataApi.Geocoder\Visicom.DataApi.Geocoder.csproj" />
+      <ProjectReference Include="..\WhatTheTea.Visicom.Geocoder\WhatTheTea.Visicom.Geocoder.csproj" />
     </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-namespace Visicom.DataApi.Geocoder.Enums;
+namespace WhatTheTea.Visicom.Geocoder.Enums;
 
 public enum Languages
 {
