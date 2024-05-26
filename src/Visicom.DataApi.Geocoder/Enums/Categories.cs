@@ -1,4 +1,4 @@
-﻿namespace WhatTheTea.Visicom.Geocoder.Enums;
+﻿namespace Visicom.DataApi.Geocoder.Enums;
 public enum Categories
 {
     ItService,

@@ -1,6 +1,6 @@
 using WhatTheTea.SprotyvMap.Shared.Primitives;
 
-namespace WhatTheTea.Visicom.Geocoder.Abstractions;
+namespace Visicom.DataApi.Geocoder.Abstractions;
 
 public interface IGeocoder
 {

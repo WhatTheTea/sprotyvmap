@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace WhatTheTea.Visicom.Geocoder.Data;
+namespace Visicom.DataApi.Geocoder.Data;
 
 public record GeoCentroid(
     [property: JsonPropertyName("type")] string Type,

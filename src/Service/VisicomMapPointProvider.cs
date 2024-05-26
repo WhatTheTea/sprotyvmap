@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using WhatTheTea.Visicom.Geocoder;
-using WhatTheTea.Visicom.Geocoder.Abstractions;
-using WhatTheTea.Visicom.Geocoder.Enums;
+using Visicom.DataApi.Geocoder;
+using Visicom.DataApi.Geocoder.Abstractions;
+using Visicom.DataApi.Geocoder.Enums;
 using WhatTheTea.SprotyvMap.Shared.Abstractions;
 using WhatTheTea.SprotyvMap.Shared.Primitives;
 

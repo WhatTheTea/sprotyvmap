@@ -1,7 +1,7 @@
-using WhatTheTea.Visicom.Geocoder.Abstractions;
-using WhatTheTea.Visicom.Geocoder.Enums;
+using Visicom.DataApi.Geocoder.Abstractions;
+using Visicom.DataApi.Geocoder.Enums;
 
-namespace WhatTheTea.Visicom.Geocoder;
+namespace Visicom.DataApi.Geocoder;
 
 public class RequestOptions : IRequestOptions
 {
