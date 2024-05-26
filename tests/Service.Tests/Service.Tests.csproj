@@ -32,7 +32,6 @@
       <ProjectReference Include="..\..\src\Service\Service.csproj" />
       <ProjectReference Include="..\..\src\Shared\Shared.csproj" />
       <ProjectReference Include="..\..\src\SprotyvInUaScraper\SprotyvInUaScraper.csproj" />
-      <ProjectReference Include="..\..\src\Visicom.DataApi.Geocoder\Visicom.DataApi.Geocoder.csproj" />
     </ItemGroup>
 
     <ItemGroup>
