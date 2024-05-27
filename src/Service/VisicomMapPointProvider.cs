@@ -1,7 +1,6 @@
 using System.Text.RegularExpressions;
 using Visicom.DataApi.Geocoder;
 using Visicom.DataApi.Geocoder.Abstractions;
-using Visicom.DataApi.Geocoder.Enums;
 using WhatTheTea.SprotyvMap.Shared.Abstractions;
 using WhatTheTea.SprotyvMap.Shared.Primitives;
 
@@ -28,8 +27,8 @@ public partial class VisicomMapPointProvider : BasicGeocoder, IMapPointProvider
             fullAddress += districtMatch + " ";
         }
         fullAddress += addressMatch;
-        
-        return await GetCoordinatesAsync(fullAddress);
+        var coordinates = await GetCoordinatesAsync(fullAddress);
+        return new MapPoint(coordinates.Latitude, coordinates.Longitude);
     }
 
     public VisicomMapPointProvider(HttpClient httpClient, IRequestOptions options) : base(httpClient, options)
