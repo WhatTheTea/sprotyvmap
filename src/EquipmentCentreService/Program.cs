@@ -6,6 +6,9 @@ using WhatTheTea.SprotyvMap.SprotyvInUa;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+var url = $"http://0.0.0.0:{port}";
+
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -35,4 +38,4 @@ app.MapControllers();
 
 app.UseHttpsRedirection();
 
-app.Run();
+app.Run(url);
