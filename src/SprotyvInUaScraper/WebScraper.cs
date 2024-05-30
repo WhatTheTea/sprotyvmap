@@ -80,16 +80,16 @@ public class WebScraper : IDataProvider
     }
 
     private string SelectCentreTitle(int districtId, int centreId) =>
-        SelectNode(XPathBuilder.EquipmentCentreName(districtId, centreId))
-            .InnerText;
+        SelectNode(XPathBuilder.EquipmentCentreName(districtId, centreId))?
+            .InnerText ?? "";
 
     private string SelectCentreInformation(int districtId, int centreId) =>
-        SelectNode(XPathBuilder.EquipmentCentreInfo(districtId, centreId))
-            .InnerText;
+        SelectNode(XPathBuilder.EquipmentCentreInfo(districtId, centreId))?
+            .InnerText ?? "";
 
     private string SelectCentreLocation(int districtId, int centreId) =>
-        SelectNode(XPathBuilder.EquipmentCentreLocation(districtId, centreId))
-            .InnerText;
+        SelectNode(XPathBuilder.EquipmentCentreLocation(districtId, centreId))?
+            .InnerText ?? "";
     
     private HtmlNode SelectNode(string xpath) =>
         Document.DocumentNode
