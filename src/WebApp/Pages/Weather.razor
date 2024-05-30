@@ -1,5 +1,7 @@
 ﻿@page "/weather"
-@inject HttpClient Http
+@using WhatTheTea.SprotyvMap.Service
+@using WhatTheTea.SprotyvMap.Shared.Primitives
+@inject EquipmentCentreProvider provider
 
 <PageTitle>Weather</PageTitle>
 
@@ -7,7 +9,7 @@
 
 <p>This component demonstrates fetching data from the server.</p>
 
-@if (forecasts == null)
+@if (_centres == null)
 {
     <p>
         <em>Loading...</em>
@@ -18,20 +20,16 @@ else
     <table class="table">
         <thead>
         <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
+            <th>Title</th>
+            <th>Coordinates</th>
         </tr>
         </thead>
         <tbody>
-        @foreach (var forecast in forecasts)
+        @foreach (var centre in _centres)
         {
             <tr>
-                <td>@forecast.Date.ToShortDateString()</td>
-                <td>@forecast.TemperatureC</td>
-                <td>@forecast.TemperatureF</td>
-                <td>@forecast.Summary</td>
+                <td>@centre.Title</td>
+                <td>@centre.Point.Latitude @centre.Point.Longitude</td>
             </tr>
         }
         </tbody>
@@ -39,22 +37,10 @@ else
 }
 
 @code {
-    private WeatherForecast[]? forecasts;
-
+    private List<EquipmentCentre>? _centres;
+    
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+        _centres = [ await provider.GetEquipmentCentreAsync(1, 1) ];
     }
-
-    public class WeatherForecast
-    {
-        public DateOnly Date { get; set; }
-
-        public int TemperatureC { get; set; }
-
-        public string? Summary { get; set; }
-
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-    }
-
 }
