@@ -1,6 +1,0 @@
-@ServiceWebApi_HostAddress = http://localhost:5083
-
-GET {{ServiceWebApi_HostAddress}}/api/EquipmentCentreController/district/1/centre/1
-Accept: application/json
-
-###

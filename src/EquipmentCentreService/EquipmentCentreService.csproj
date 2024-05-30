@@ -8,6 +8,7 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <AssemblyName>SprotyvMap.$(MSBuildProjectName)</AssemblyName>
     <RootNamespace>WhatTheTea.SportyvMap.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>

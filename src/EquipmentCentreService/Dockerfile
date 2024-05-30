@@ -9,17 +9,19 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["ServiceWebApi/ServiceWebApi.csproj", "ServiceWebApi/"]
-RUN dotnet restore "./ServiceWebApi/ServiceWebApi.csproj"
+COPY ["src/EquipmentCentreService/EquipmentCentreService.csproj", "src/EquipmentCentreService/"]
+COPY ["src/Shared/Shared.csproj", "src/Shared/"]
+COPY ["src/SprotyvInUaScraper/SprotyvInUaScraper.csproj", "src/SprotyvInUaScraper/"]
+RUN dotnet restore "./src/EquipmentCentreService/EquipmentCentreService.csproj"
 COPY . .
-WORKDIR "/src/ServiceWebApi"
-RUN dotnet build "./ServiceWebApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/src/EquipmentCentreService"
+RUN dotnet build "./EquipmentCentreService.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./ServiceWebApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./EquipmentCentreService.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "ServiceWebApi.dll"]
+ENTRYPOINT ["dotnet", "SprotyvMap.EquipmentCentreService.dll"]
