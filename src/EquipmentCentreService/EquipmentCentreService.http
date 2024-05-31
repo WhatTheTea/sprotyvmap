@@ -1,6 +1,6 @@
 @EquipmentCentreService_HostAddress = http://localhost:5083
 
-GET {{EquipmentCentreService_HostAddress}}/api/EquipmentCentreController/district/1/centre/1
+GET {{EquipmentCentreService_HostAddress}}/api/Districts/1/centre/1
 Accept: application/json
 
 ###

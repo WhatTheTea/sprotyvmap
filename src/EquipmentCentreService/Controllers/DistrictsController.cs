@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+
 using WhatTheTea.SprotyvMap.Shared.Abstractions;
 using WhatTheTea.SprotyvMap.Shared.Primitives;
 
@@ -13,25 +14,35 @@ namespace WhatTheTea.SportyvMap.EquipmentCentreService.Controllers
         private readonly IDataProvider dataProvider = dataProvider;
         private readonly IMapPointProvider mapPointProvider = mapPointProvider;
 
-        // GET: api/<EquipmentCentres>
+        // GET: api/Districts
         [HttpGet]
         public async Task<IEnumerable<District>> Get()
         {
-            var data = (await dataProvider.GetAllDistrictsAsync()).ToList();
-            return await Task.WhenAll(data.Select(async x =>
-            {
-                var centres = x.EquipmentCentres.Select(async y =>
-                {
-                    var mapPoint = await mapPointProvider.GetPoint(y.Information);
-                    return y with { Point = mapPoint };
-                });
-                return x with { EquipmentCentres = await Task.WhenAll(centres) };
-            }));
+            var districts = (await dataProvider.GetAllDistrictsAsync()).ToList();
+            return await GeocodeDistricts(districts).ToArrayAsync();
         }
 
-        // GET api/EquipmentCentres/district/1/centre/1
-        [HttpGet("district/{district}/centre/{id}")]
-        public async Task<EquipmentCentre> Get(int district, int id)
+        private async IAsyncEnumerable<District> GeocodeDistricts(IEnumerable<District> districts) 
+        {
+            foreach (var district in districts.ToArray())
+            {
+                var centres = await GeocodeCentres(district.EquipmentCentres).ToArrayAsync();
+                yield return district with { EquipmentCentres = centres };
+            }
+        }
+
+        private async IAsyncEnumerable<EquipmentCentre> GeocodeCentres(IEnumerable<EquipmentCentre> centres)
+        {
+            foreach (var centre in centres)
+            {
+                var mapPoint = await mapPointProvider.GetPoint(centre.Information);
+                yield return centre with { Point = mapPoint };
+            }
+        }
+
+        // GET api/Districts/1/centre/1
+        [HttpGet("{district}/centre/{id}")]
+        public async Task<EquipmentCentre> GetCentre(int district, int id)
         {
             var data = await dataProvider.GetEquipmentCentreAsync(district, id);
             var mapPoint = await mapPointProvider.GetPoint(data.Information);
