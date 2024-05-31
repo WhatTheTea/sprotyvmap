@@ -18,7 +18,7 @@
     <PackageReference Include="Visicom.DataApi.Geocoder" Version="0.2.1-alpha" />
   </ItemGroup>
 
-  <ItemGroup>
+	<ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <ProjectReference Include="..\SprotyvInUaScraper\SprotyvInUaScraper.csproj" />
   </ItemGroup>
