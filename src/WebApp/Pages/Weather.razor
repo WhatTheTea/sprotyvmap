@@ -1,7 +1,5 @@
 ﻿@page "/weather"
-@using WhatTheTea.SprotyvMap.Service
-@using WhatTheTea.SprotyvMap.Shared.Primitives
-@inject EquipmentCentreProvider provider
+
 
 <PageTitle>Weather</PageTitle>
 
@@ -9,38 +7,8 @@
 
 <p>This component demonstrates fetching data from the server.</p>
 
-@if (_centres == null)
-{
-    <p>
-        <em>Loading...</em>
-    </p>
-}
-else
-{
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Title</th>
-            <th>Coordinates</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var centre in _centres)
-        {
-            <tr>
-                <td>@centre.Title</td>
-                <td>@centre.Point.Latitude @centre.Point.Longitude</td>
-            </tr>
-        }
-        </tbody>
-    </table>
-}
+
 
 @code {
-    private List<EquipmentCentre>? _centres;
     
-    protected override async Task OnInitializedAsync()
-    {
-        _centres = [ await provider.GetEquipmentCentreAsync(1, 1) ];
-    }
 }
