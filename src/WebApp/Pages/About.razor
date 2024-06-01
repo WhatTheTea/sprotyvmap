@@ -1,0 +1,42 @@
+﻿@page "/about"
+@using BlazorLeaflet
+@using System.Drawing
+@using BlazorLeaflet.Models
+@inject IJSRuntime jsRuntime
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<div id="mapContainer" style="width: 500px; height: 500px;">
+    <LeafletMap Map="_map" InitialZoom="4" InitialPosition="_startPoint"/>
+</div>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private Map _map;
+    private PointF _startPoint = new(50.448847f, 30.521626f);
+
+    protected override Task OnInitializedAsync()
+    {
+        _map = new Map(jsRuntime);
+        _map.Layers.Add(new TileLayer
+            {
+                UrlTemplate = "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                Attribution = "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors",
+            });
+        _map.Layers.Add(new Marker(50.311187f, 34.900628f));
+        return base.OnInitializedAsync();
+    }
+
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+
+}

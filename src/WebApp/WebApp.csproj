@@ -10,12 +10,9 @@
   </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="BlazorLeaflet" Version="0.4.0-alpha" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.4" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.4" PrivateAssets="all" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\SprotyvInUaScraper\SprotyvInUaScraper.csproj" />
     </ItemGroup>
 
 </Project>
