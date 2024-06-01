@@ -17,8 +17,8 @@ var visicomApiKey = builder.Configuration["VISICOM_DAPI_KEY"] ?? string.Empty;
 var requestOptions = new RequestOptions(Languages.Ukrainian, visicomApiKey);
 builder.Services
     .AddScoped<IMapPointProvider, VisicomMapPointProvider>(provider =>
-        new VisicomMapPointProvider(provider.GetService<HttpClient>()!, requestOptions))
-    .AddScoped<IDataProvider, WebScraper>(s => WebScraper.Create(s.GetService<HttpClient>()!).GetAwaiter().GetResult());
+        new VisicomMapPointProvider(provider.GetRequiredService<HttpClient>(), requestOptions))
+    .AddScoped<IDataProvider, WebScraper>(s => WebScraper.Create(s.GetRequiredService<HttpClient>()).GetAwaiter().GetResult());
 
 builder.Services.AddControllers();
 
