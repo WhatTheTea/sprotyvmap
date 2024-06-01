@@ -1,9 +1,11 @@
 ﻿@inherits LayoutComponentBase
 <div class="page">
     <main>
-        <div class="justify-content-start top-row bg-primary bg-gradient">
-            <NavMenu />
-        </div>
+        <header class="sticky-top">
+            <div class="justify-content-start top-row bg-primary bg-gradient">
+                <NavMenu />
+            </div>
+        </header>
         <article class="content px-5">
             @Body
         </article>
