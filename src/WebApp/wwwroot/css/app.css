@@ -2,6 +2,11 @@ html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+@font-face {
+    font-family: 'capture-it';
+    src: url('../fonts/capture.ttf') format('truetype');
+}
+
 h1:focus {
     outline: none;
 }
