@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿ <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
@@ -6,15 +6,12 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <RootNamespace>WhatTheTea.SprotyvMap.WebApp</RootNamespace>
         <AssemblyName>SprotyvMap.WebApp</AssemblyName>
-        <UserSecretsId>570dd539-33f8-4a44-981c-0f61d009bbc7</UserSecretsId>
-  </PropertyGroup>
-
+	</PropertyGroup>
+	 
     <ItemGroup>
         <PackageReference Include="BlazorLeaflet" Version="0.4.0-alpha" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.4" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.4" PrivateAssets="all" />
-        <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.1.1" />
-        <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.0-preview.4.24266.19" />
     </ItemGroup>
 
     <ItemGroup>

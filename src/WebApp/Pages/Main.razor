@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using System.Diagnostics.CodeAnalysis
 @using WhatTheTea.SprotyvMap.WebApp.Services
 @using BlazorLeaflet
 @using System.Drawing
@@ -14,6 +15,8 @@
 </div>
 
 @code {
+    /// Workaround of https://learn.microsoft.com/en-us/dotnet/core/compatibility/serialization/8.0/metadata-resolving
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(Tuple<double,double>))]
     private Map _map;
     private PointF _startPoint = new(50.448847f, 30.521626f);
 
