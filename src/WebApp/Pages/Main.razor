@@ -1,0 +1,46 @@
+﻿@page "/"
+@using WhatTheTea.SprotyvMap.WebApp.Services
+@using BlazorLeaflet
+@using System.Drawing
+@using BlazorLeaflet.Models
+@inject IJSRuntime jsRuntime
+@inject IEquipmentCentreProvider? centreProvider
+
+<PageTitle>Мапа ТЦК та СП | sprotyv-map</PageTitle>
+
+<h3 class="text-dark">Інтерактивна мапа місцезнаходження ТЦК та СП</h3>
+<div id="mapContainer" class="map-container d-flex w-100 align-items-center justify-content-center">
+    <LeafletMap Map="_map" InitialZoom="8" InitialPosition="_startPoint" />
+</div>
+
+@code {
+    private Map _map;
+    private PointF _startPoint = new(50.448847f, 30.521626f);
+
+    protected override async Task OnInitializedAsync()
+    {
+        _map = new Map(jsRuntime);
+        _map.Layers.Add(new TileLayer
+            {
+                UrlTemplate = "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                Attribution = "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors",
+            });
+
+        if (centreProvider is not null)
+        {
+            foreach (var district in await centreProvider.GetDistrictsAsync())
+            {
+                foreach (var centre in district.EquipmentCentres)
+                {
+                    centre.Point.Deconstruct(out var lat, out var lng);
+                    if (lat == 0 && lng == 0) continue;
+
+                    var marker = new Marker((float)lat, (float)lng);
+                    _map.Layers.Add(marker);
+                }
+            }
+        }
+
+        await base.OnInitializedAsync();
+    }
+}

@@ -17,6 +17,9 @@ nupkg/
 *.userosscache
 *.sln.docstates
 
+# firebase
+firebase-debug.log
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

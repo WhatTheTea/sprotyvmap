@@ -1,0 +1,20 @@
+@startuml howdoestitworks
+
+actor "Користувач" as user
+participant "sprotyv-map (сайт)" as sm
+participant "sprotyvmap-api" as api
+participant "sprotyv.in.ua" as parsed
+participant "Visicom Data API" as vidapi
+
+user -> sm : Заходить на сайт
+
+sm -> api : Запит ТЦК та СП
+api -> parsed : Запит адрес ТЦК та СП
+parsed --> api : Адреси ТЦК та СП
+api -> vidapi : Запит координат
+vidapi --> api : Координати (довгота, широта)
+api --> sm : Дані про ТЦК та СП
+
+sm --> user : Отримує мапу ТЦК та СП по всій Україні
+
+@enduml
