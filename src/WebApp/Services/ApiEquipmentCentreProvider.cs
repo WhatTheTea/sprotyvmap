@@ -4,7 +4,7 @@ using WhatTheTea.SprotyvMap.Shared.Primitives;
 
 namespace WhatTheTea.SprotyvMap.WebApp.Services
 {
-    public class ApiEquipmentCentreProvider(HttpClient httpClient, string apiUrl = "https://sprotyvmap-api.azurewebsites.net") : IEquipmentCentreProvider
+    public class ApiEquipmentCentreProvider(HttpClient httpClient, string apiUrl) : IEquipmentCentreProvider
     {
         private readonly HttpClient httpClient = httpClient;
         private readonly string apiUrl = apiUrl;
