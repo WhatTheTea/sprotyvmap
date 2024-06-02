@@ -19,6 +19,7 @@ nupkg/
 
 # firebase
 firebase-debug.log
+.firebase
 
 # Build results
 [Dd]ebug/
