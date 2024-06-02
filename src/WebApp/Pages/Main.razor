@@ -33,6 +33,8 @@
                 foreach (var centre in district.EquipmentCentres)
                 {
                     centre.Point.Deconstruct(out var lat, out var lng);
+                    if (lat == 0 && lng == 0) continue;
+
                     var marker = new Marker((float)lat, (float)lng);
                     _map.Layers.Add(marker);
                 }
