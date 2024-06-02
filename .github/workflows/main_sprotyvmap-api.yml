@@ -7,6 +7,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - src/**
     paths-ignore:
       - src/WebApp/**
   workflow_dispatch:
