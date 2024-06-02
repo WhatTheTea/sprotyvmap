@@ -8,7 +8,20 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped<HttpClient>();
+builder.Services.AddCors(options =>
+{
+    var list = builder.Configuration.GetSection("cors:urls").Get<List<string>>();
+    if (list != null)
+    {
+        options.AddDefaultPolicy(
+                     policy =>
+                     {
+                         policy.WithOrigins(list?.ToArray());
+                     });
+    }
 
+});
 builder.Services.AddScoped<IEquipmentCentreProvider, ApiEquipmentCentreProvider>();
 
-await builder.Build().RunAsync();
+var app = builder.Build();
+await app.RunAsync();

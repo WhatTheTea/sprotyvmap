@@ -13,6 +13,8 @@
         <PackageReference Include="BlazorLeaflet" Version="0.4.0-alpha" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.4" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.4" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.1.1" />
+        <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.0-preview.4.24266.19" />
     </ItemGroup>
 
     <ItemGroup>

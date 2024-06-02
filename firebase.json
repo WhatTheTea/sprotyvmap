@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "src/WebApp/release/wwwroot",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
