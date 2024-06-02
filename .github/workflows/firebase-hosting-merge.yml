@@ -18,7 +18,7 @@ jobs:
         with:
           dotnet-version: '8.x'
           include-prerelease: true
-      - run: dotnet publish -c ReleaseApp -o src/WebApp/release/wwwroot
+      - run: dotnet publish -c ReleaseApp -o src/WebApp/release/ src/WebApp/WebApp.csproj
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
