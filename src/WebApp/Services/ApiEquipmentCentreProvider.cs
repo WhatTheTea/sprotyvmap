@@ -8,7 +8,7 @@ namespace WhatTheTea.SprotyvMap.WebApp.Services
     {
         private readonly HttpClient httpClient = httpClient;
         private readonly string apiUrl = apiUrl;
-        private string apiDistrictsEndpoint => apiUrl + "/api/Districts";
+        private string apiDistrictsEndpoint => apiUrl + "api/Districts";
 
         public async Task<IEnumerable<District>> GetDistrictsAsync()
         {

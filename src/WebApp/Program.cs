@@ -9,11 +9,15 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped<HttpClient>();
 
+
+string equipmentCentreApiUrl = builder.Configuration.GetValue<string>("EquipmentCentres_API_URL") ??
+        throw new InvalidOperationException("Can't load EquipmentCentres API URL");
+
 builder.Services.AddScoped<IEquipmentCentreProvider, ApiEquipmentCentreProvider>(
-    builder =>
+    options =>
     new ApiEquipmentCentreProvider(
-        builder.GetRequiredService<HttpClient>(),
-        "https://sprotyvmap-api.azurewebsites.net"
+        options.GetRequiredService<HttpClient>(),
+        equipmentCentreApiUrl
         ));
 
 var app = builder.Build();
