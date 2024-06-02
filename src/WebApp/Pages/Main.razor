@@ -1,8 +1,10 @@
 ﻿@page "/"
+@using WhatTheTea.SprotyvMap.WebApp.Services
 @using BlazorLeaflet
 @using System.Drawing
 @using BlazorLeaflet.Models
 @inject IJSRuntime jsRuntime
+@inject IEquipmentCentreProvider? centreProvider
 
 <PageTitle>Мапа ТЦК та СП | sprotyv-map</PageTitle>
 
@@ -15,7 +17,7 @@
     private Map _map;
     private PointF _startPoint = new(50.448847f, 30.521626f);
 
-    protected override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
         _map = new Map(jsRuntime);
         _map.Layers.Add(new TileLayer
@@ -23,7 +25,20 @@
                 UrlTemplate = "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 Attribution = "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors",
             });
-        _map.Layers.Add(new Marker(50.311187f, 34.900628f));
-        return base.OnInitializedAsync();
+
+        if (centreProvider is not null)
+        {
+            foreach (var district in await centreProvider.GetDistrictsAsync())
+            {
+                foreach (var centre in district.EquipmentCentres)
+                {
+                    centre.Point.Deconstruct(out var lat, out var lng);
+                    var marker = new Marker((float)lat, (float)lng);
+                    _map.Layers.Add(marker);
+                }
+            }
+        }
+
+        await base.OnInitializedAsync();
     }
 }
