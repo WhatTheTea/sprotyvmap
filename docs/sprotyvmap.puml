@@ -54,8 +54,8 @@ package sprotyvmap
                 +Get() | api/Districts
                 +GetCentre() | api/Districts/{}/centre/{}
             }
-            DistrictsController o-- IDataProvider
-            DistrictsController o- IMapPointProvider
+            IDataProvider --o DistrictsController
+            IMapPointProvider --o DistrictsController
         }
         package Providers
         {
@@ -64,9 +64,34 @@ package sprotyvmap
                 -httpClient
                 +GetPointAsync()
             }
-            VisicomMapPointProvider ..|> IMapPointProvider
+            IMapPointProvider <|.. VisicomMapPointProvider
         }
 
+    }
+    package SprotyvInUaScraper
+    {
+        class WebScraper
+        {
+            -httpClient
+            +{static}Create()
+            +LoadDataAsync()
+            +GetAllDistricts()
+            +GetEquipmentCentres()
+            +GetEquipmentCentre()
+        }
+        WebScraper ..|> IDataProvider
+        class XPathBuilder
+        {
+            {static} DistrictNameXPath
+            {static} EquipmentCentreName
+            {static} EquipmentCentreInfo
+            {static} EquipmentCentreLocation
+            {static} EquipmentCentreData
+            {static} DistrictXPath
+            {static} AllDistrictsXPath
+        }
+        hide XPathBuilder methods
+        XPathBuilder <- WebScraper
     }
     package WebApp
     {
@@ -86,10 +111,14 @@ package sprotyvmap
         package Pages
         {
             class About
+            {
+            }
+            hide About members
             class Main
             {
                 -Map
             }
+            hide Main methods
         }
         Main -left-> IEquipmentCentreProvider
     }
