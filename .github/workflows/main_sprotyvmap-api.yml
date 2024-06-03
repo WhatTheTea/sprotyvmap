@@ -8,9 +8,8 @@ on:
     branches:
       - main
     paths:
-      - src/**
-    paths-ignore:
-      - src/WebApp/**
+      - 'src/**'
+      - '!src/WebApp/**'
   workflow_dispatch:
 
 jobs:
