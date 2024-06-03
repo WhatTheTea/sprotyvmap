@@ -1,10 +1,4 @@
-using Microsoft.Extensions.Caching.Memory;
-
-using WhatTheTea.SportyvMap.EquipmentCentreService.Extensions;
-using WhatTheTea.SportyvMap.EquipmentCentreService.Services;
-using WhatTheTea.SportyvMap.EquipmentCentreService.Workers;
-using WhatTheTea.SprotyvMap.Shared.Abstractions;
-using WhatTheTea.SprotyvMap.Shared.Primitives;
+using WhatTheTea.SprotyvMap.WebService.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

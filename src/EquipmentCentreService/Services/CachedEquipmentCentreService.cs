@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 
-using WhatTheTea.SportyvMap.EquipmentCentreService.Workers;
 using WhatTheTea.SprotyvMap.Shared.Primitives;
+using WhatTheTea.SprotyvMap.WebService.Workers;
 
-namespace WhatTheTea.SportyvMap.EquipmentCentreService.Services;
+namespace WhatTheTea.SprotyvMap.WebService.Services;
 
 public class CachedEquipmentCentreService(
     IMemoryCache cache,
@@ -17,8 +17,8 @@ public class CachedEquipmentCentreService(
         {
             await cacheSignal.WaitAsync();
 
-            District[] districts = await cache.GetOrCreateAsync("Districts", 
-                _ => Task.FromResult(Array.Empty<District>())) 
+            District[] districts = await cache.GetOrCreateAsync("Districts",
+                _ => Task.FromResult(Array.Empty<District>()))
                 ?? [];
 
             return districts;

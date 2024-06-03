@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 
-using WhatTheTea.SportyvMap.EquipmentCentreService.Services;
 using WhatTheTea.SprotyvMap.Shared.Primitives;
+using WhatTheTea.SprotyvMap.WebService.Services;
 
-namespace WhatTheTea.SportyvMap.EquipmentCentreService.Workers;
+namespace WhatTheTea.SprotyvMap.WebService.Workers;
 
 public sealed class DistrictsCacheWorker(
     IEquipmentCentreService service,
@@ -55,14 +55,14 @@ public sealed class DistrictsCacheWorker(
         }
     }
 
-    private async Task UpdateCache() 
+    private async Task UpdateCache()
     {
         District[] districts = (await service.GetDistrictsAsync()).ToArray();
 
         if (districts.Length == 0)
         {
             logger.LogError("Unable to update districts cache");
-        } 
+        }
         else
         {
             memoryCache.Set("Districts", districts);

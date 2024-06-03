@@ -1,4 +1,4 @@
-﻿namespace WhatTheTea.SportyvMap.EquipmentCentreService.Workers;
+﻿namespace WhatTheTea.SprotyvMap.WebService.Workers;
 
 public sealed class CacheSignal<T>
 {

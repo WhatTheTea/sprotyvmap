@@ -1,7 +1,9 @@
-﻿using System.IO;
-using System.Net.Mime;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
+
 using RichardSzalay.MockHttp;
+
+using System.IO;
+using System.Net.Mime;
 
 namespace WhatTheTea.SprotyvMap.WebScraper.Tests.Unit;
 

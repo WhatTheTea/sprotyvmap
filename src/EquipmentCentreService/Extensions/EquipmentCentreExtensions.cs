@@ -1,18 +1,20 @@
-﻿using Visicom.DataApi.Geocoder.Enums;
-using Visicom.DataApi.Geocoder;
-using WhatTheTea.SprotyvMap.Service;
-using WhatTheTea.SprotyvMap.Shared.Abstractions;
-using WhatTheTea.SprotyvMap.SprotyvInUa;
-using WhatTheTea.SportyvMap.EquipmentCentreService.Services;
-using WhatTheTea.SportyvMap.EquipmentCentreService.Workers;
-using WhatTheTea.SprotyvMap.Shared.Primitives;
-using Microsoft.Extensions.Caching.Memory;
+﻿using Microsoft.Extensions.Caching.Memory;
 
-namespace WhatTheTea.SportyvMap.EquipmentCentreService.Extensions;
+using Visicom.DataApi.Geocoder;
+using Visicom.DataApi.Geocoder.Enums;
+
+using WhatTheTea.SprotyvMap.Shared.Abstractions;
+using WhatTheTea.SprotyvMap.Shared.Primitives;
+using WhatTheTea.SprotyvMap.SprotyvInUa;
+using WhatTheTea.SprotyvMap.WebService.Providers;
+using WhatTheTea.SprotyvMap.WebService.Services;
+using WhatTheTea.SprotyvMap.WebService.Workers;
+
+namespace WhatTheTea.SprotyvMap.WebService.Extensions;
 
 public static class EquipmentCentresExtensions
 {
-    public static IServiceCollection AddEquipmentCentreDataProviders(this IServiceCollection services, string visicomApiKey) 
+    public static IServiceCollection AddEquipmentCentreDataProviders(this IServiceCollection services, string visicomApiKey)
     {
         var requestOptions = new RequestOptions(Languages.Ukrainian, visicomApiKey);
 
@@ -31,7 +33,7 @@ public static class EquipmentCentresExtensions
         return services;
     }
 
-    public static IServiceCollection AddEquipmentCentreCachedService(this IServiceCollection services) 
+    public static IServiceCollection AddEquipmentCentreCachedService(this IServiceCollection services)
     {
         services.AddMemoryCache();
         services.AddSingleton(typeof(CacheSignal<>));

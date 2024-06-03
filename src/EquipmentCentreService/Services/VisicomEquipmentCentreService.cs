@@ -1,7 +1,7 @@
 ﻿using WhatTheTea.SprotyvMap.Shared.Abstractions;
 using WhatTheTea.SprotyvMap.Shared.Primitives;
 
-namespace WhatTheTea.SportyvMap.EquipmentCentreService.Services
+namespace WhatTheTea.SprotyvMap.WebService.Services
 {
     public class VisicomEquipmentCentreService(IDataProvider dataProvider, IMapPointProvider mapPointProvider)
         : IEquipmentCentreService

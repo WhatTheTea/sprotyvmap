@@ -5,10 +5,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>47f1f43c-ad8b-4496-9d44-2087a5d5420e</UserSecretsId>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <AssemblyName>SprotyvMap.$(MSBuildProjectName)</AssemblyName>
-    <RootNamespace>WhatTheTea.SportyvMap.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
-    <DockerfileContext>..\..</DockerfileContext>
+    <RootNamespace>WhatTheTea.SprotyvMap.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

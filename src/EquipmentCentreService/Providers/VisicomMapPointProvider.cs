@@ -1,13 +1,15 @@
 using System.Text.RegularExpressions;
+
 using Visicom.DataApi.Geocoder;
 using Visicom.DataApi.Geocoder.Abstractions;
+
 using WhatTheTea.SprotyvMap.Shared.Abstractions;
 using WhatTheTea.SprotyvMap.Shared.Primitives;
 
-namespace WhatTheTea.SprotyvMap.Service;
+namespace WhatTheTea.SprotyvMap.WebService.Providers;
 
 public partial class VisicomMapPointProvider
-    (HttpClient httpClient, IRequestOptions options, ILogger<VisicomMapPointProvider> logger) 
+    (HttpClient httpClient, IRequestOptions options, ILogger<VisicomMapPointProvider> logger)
     : BasicGeocoder(httpClient, options), IMapPointProvider
 {
     private const string RegexDistrictPattern = @"[А-Яа-яіІ-]+ (обл\.|область)";
@@ -18,7 +20,7 @@ public partial class VisicomMapPointProvider
     private static partial Regex AddressRegex();
     [GeneratedRegex(RegexDistrictPattern)]
     private static partial Regex DistrictRegex();
-    
+
     public async Task<MapPoint> GetPoint(string address)
     {
         logger.LogTrace("Getting map point for {address}", address);

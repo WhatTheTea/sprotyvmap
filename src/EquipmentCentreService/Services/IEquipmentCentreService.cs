@@ -1,6 +1,6 @@
 ﻿using WhatTheTea.SprotyvMap.Shared.Primitives;
 
-namespace WhatTheTea.SportyvMap.EquipmentCentreService.Services;
+namespace WhatTheTea.SprotyvMap.WebService.Services;
 
 public interface IEquipmentCentreService
 {

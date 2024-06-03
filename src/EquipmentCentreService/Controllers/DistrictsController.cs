@@ -2,12 +2,12 @@
 
 using System.Net;
 
-using WhatTheTea.SportyvMap.EquipmentCentreService.Services;
 using WhatTheTea.SprotyvMap.Shared.Primitives;
+using WhatTheTea.SprotyvMap.WebService.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace WhatTheTea.SportyvMap.EquipmentCentreService.Controllers
+namespace WhatTheTea.SprotyvMap.WebService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
