@@ -5,17 +5,17 @@ using WhatTheTea.SprotyvMap.Shared.Primitives;
 
 namespace WhatTheTea.SportyvMap.EquipmentCentreService.Workers;
 
-public sealed class DistritctsCacheWorker(
+public sealed class DistrictsCacheWorker(
     IEquipmentCentreService service,
     CacheSignal<District[]> cacheSignal,
     IMemoryCache memoryCache,
-    ILogger<DistritctsCacheWorker> logger)
+    ILogger<DistrictsCacheWorker> logger)
     : BackgroundService
 {
     private readonly IEquipmentCentreService service = service;
     private readonly CacheSignal<District[]> cacheSignal = cacheSignal;
     private readonly IMemoryCache memoryCache = memoryCache;
-    private readonly ILogger<DistritctsCacheWorker> logger = logger;
+    private readonly ILogger<DistrictsCacheWorker> logger = logger;
 
     private readonly TimeSpan updateInterval = TimeSpan.FromDays(7);
     private bool isCacheInitialized = false;
