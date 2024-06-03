@@ -1,8 +1,10 @@
-using Visicom.DataApi.Geocoder;
-using Visicom.DataApi.Geocoder.Enums;
-using WhatTheTea.SprotyvMap.Service;
+using Microsoft.Extensions.Caching.Memory;
+
+using WhatTheTea.SportyvMap.EquipmentCentreService.Extensions;
+using WhatTheTea.SportyvMap.EquipmentCentreService.Services;
+using WhatTheTea.SportyvMap.EquipmentCentreService.Workers;
 using WhatTheTea.SprotyvMap.Shared.Abstractions;
-using WhatTheTea.SprotyvMap.SprotyvInUa;
+using WhatTheTea.SprotyvMap.Shared.Primitives;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,25 +13,29 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
-builder.Services.AddMemoryCache();
+
 builder.Services.AddLogging();
 builder.Services.AddHttpClient();
 
 var visicomApiKey = builder.Configuration["VISICOM_DAPI_KEY"] ?? string.Empty;
-var requestOptions = new RequestOptions(Languages.Ukrainian, visicomApiKey);
+builder.Services.AddEquipmentCentreDataProviders(visicomApiKey);
 
-builder.Services
-    .AddScoped<IMapPointProvider, VisicomMapPointProvider>(services =>
-        new VisicomMapPointProvider(
-            services.GetRequiredService<HttpClient>(),
-            requestOptions,
-            services.GetRequiredService<ILogger<VisicomMapPointProvider>>())
-        );
+// Caching
+builder.Services.AddMemoryCache();
+builder.Services.AddSingleton(typeof(CacheSignal<>));
 
-builder.Services.AddScoped<IDataProvider, WebScraper>(services => 
-    WebScraper.Create(services.GetRequiredService<HttpClient>())
-    .GetAwaiter()
-    .GetResult());
+var equipmentCentreServiceFactory = (IServiceProvider services) =>
+    new VisicomEquipmentCentreService(
+        services.GetRequiredService<IDataProvider>(),
+        services.GetRequiredService<IMapPointProvider>());
+
+builder.Services.AddHostedService(services =>
+    new DistritctsCacheWorker(
+        equipmentCentreServiceFactory(services),
+        services.GetRequiredService<CacheSignal<District[]>>(),
+        services.GetRequiredService<IMemoryCache>(),
+        services.GetRequiredService<ILogger<DistritctsCacheWorker>>()));
+builder.Services.AddScoped<IEquipmentCentreService, CachedEquipmentCentreService>();
 
 builder.Services.AddControllers();
 
