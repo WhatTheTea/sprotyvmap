@@ -19,23 +19,7 @@ builder.Services.AddHttpClient();
 
 var visicomApiKey = builder.Configuration["VISICOM_DAPI_KEY"] ?? string.Empty;
 builder.Services.AddEquipmentCentreDataProviders(visicomApiKey);
-
-// Caching
-builder.Services.AddMemoryCache();
-builder.Services.AddSingleton(typeof(CacheSignal<>));
-
-var equipmentCentreServiceFactory = (IServiceProvider services) =>
-    new VisicomEquipmentCentreService(
-        services.GetRequiredService<IDataProvider>(),
-        services.GetRequiredService<IMapPointProvider>());
-
-builder.Services.AddHostedService(services =>
-    new DistritctsCacheWorker(
-        equipmentCentreServiceFactory(services),
-        services.GetRequiredService<CacheSignal<District[]>>(),
-        services.GetRequiredService<IMemoryCache>(),
-        services.GetRequiredService<ILogger<DistritctsCacheWorker>>()));
-builder.Services.AddScoped<IEquipmentCentreService, CachedEquipmentCentreService>();
+builder.Services.AddEquipmentCentreCachedService();
 
 builder.Services.AddControllers();
 
