@@ -1,0 +1,22 @@
+@startuml deployment
+' skinparam Linetype ortho
+left to right direction
+
+actor Developer
+' cloud not working as expected in vs code
+rectangle GitHub{
+    process "Deploy sprotyvmap-api to Azure" << GitHub Action >> as deployAzure
+    process "Deploy sprotyv-map to Firebase" << GitHub Action >>  as deployFirebase
+    artifact "sprotyvmap-api artifact" as builtApi
+    artifact "sprotyv-map artifact" as builtApp
+
+    Developer --> deployFirebase : pushes sprotyv-map into main branch
+    Developer --> deployAzure : pushes sprotyvmap-api into main branch 
+    deployAzure -- builtApi
+    deployFirebase -- builtApp
+}
+cloud "Firebase Hosting" as FirebaseHost
+cloud "Azure App Service" as AzureHost
+builtApi --> AzureHost : is deployed
+builtApp --> FirebaseHost : is deployed
+@enduml
