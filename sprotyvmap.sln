@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "src\WebApp\WebApp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebScraper.Tests", "tests\WebScraper.Tests\WebScraper.Tests.csproj", "{C2C634DF-C3F0-4534-B0D8-1A79183B65A6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebService", "src\EquipmentCentreService\WebService.csproj", "{C1AEC8A6-28FB-4138-9FDA-572A137A5817}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebService", "src\WebService\WebService.csproj", "{C1AEC8A6-28FB-4138-9FDA-572A137A5817}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
