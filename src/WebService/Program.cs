@@ -1,8 +1,4 @@
-using Visicom.DataApi.Geocoder;
-using Visicom.DataApi.Geocoder.Enums;
-using WhatTheTea.SprotyvMap.Service;
-using WhatTheTea.SprotyvMap.Shared.Abstractions;
-using WhatTheTea.SprotyvMap.SprotyvInUa;
+using WhatTheTea.SprotyvMap.WebService.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,15 +6,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<HttpClient>();
 builder.Services.AddControllers();
 
+builder.Services.AddLogging();
+builder.Services.AddHttpClient();
+
 var visicomApiKey = builder.Configuration["VISICOM_DAPI_KEY"] ?? string.Empty;
-var requestOptions = new RequestOptions(Languages.Ukrainian, visicomApiKey);
-builder.Services
-    .AddScoped<IMapPointProvider, VisicomMapPointProvider>(provider =>
-        new VisicomMapPointProvider(provider.GetRequiredService<HttpClient>(), requestOptions))
-    .AddScoped<IDataProvider, WebScraper>(s => WebScraper.Create(s.GetRequiredService<HttpClient>()).GetAwaiter().GetResult());
+builder.Services.AddEquipmentCentreDataProviders(visicomApiKey);
+builder.Services.AddEquipmentCentreCachedService();
 
 builder.Services.AddControllers();
 

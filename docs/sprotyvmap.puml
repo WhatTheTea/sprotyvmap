@@ -43,31 +43,6 @@ package sprotyvmap
         EquipmentCentre o- MapPoint
 
     }
-    package EquipmentCentreService
-    {
-        package Controllers
-        {
-            class DistrictsController
-            {
-                -dataProvider
-                -mapPointProvider
-                +Get() | api/Districts
-                +GetCentre() | api/Districts/{}/centre/{}
-            }
-            IDataProvider --o DistrictsController
-            IMapPointProvider --o DistrictsController
-        }
-        package Providers
-        {
-            class VisicomMapPointProvider
-            {
-                -httpClient
-                +GetPointAsync()
-            }
-            IMapPointProvider <|.. VisicomMapPointProvider
-        }
-
-    }
     package SprotyvInUaScraper
     {
         class WebScraper
@@ -79,7 +54,7 @@ package sprotyvmap
             +GetEquipmentCentres()
             +GetEquipmentCentre()
         }
-        WebScraper ..|> IDataProvider
+        IDataProvider <|. WebScraper 
         class XPathBuilder
         {
             {static} DistrictNameXPath
@@ -91,7 +66,7 @@ package sprotyvmap
             {static} AllDistrictsXPath
         }
         hide XPathBuilder methods
-        XPathBuilder <- WebScraper
+        WebScraper --> XPathBuilder
     }
     package WebApp
     {
@@ -120,7 +95,80 @@ package sprotyvmap
             }
             hide Main methods
         }
-        Main -left-> IEquipmentCentreProvider
+        IEquipmentCentreProvider <-- Main
+    }
+    package WebService
+    {
+        package Providers
+        {
+            class VisicomMapPointProvider 
+            {
+                -httpClient
+                -requestOptions
+                -logger
+                +GetPointAsync()
+            }
+            IMapPointProvider <|.. VisicomMapPointProvider 
+        }
+        package Services
+        {
+            interface IEquipmentCentreService
+            {
+                GetDistrictsAsync()
+                GetEquipmentCentreAsync()
+            }
+            class VisicomEquipmentCentreService implements IEquipmentCentreService
+            {
+                -dataProvider
+                -mapPointProvider
+                +GetDistrictsAsync()
+                +GetEquipmentCentreAsync()
+            }
+            class CachedEquipmentCentreService implements IEquipmentCentreService
+            {
+                -cache
+                -cacheSignal
+                -logger
+                +GetDistrictsAsync()
+                +GetEquipmentCentreAsync()
+            }
+            IDataProvider <-- VisicomEquipmentCentreService
+            IMapPointProvider <-- VisicomEquipmentCentreService
+            CachedEquipmentCentreService -> CacheSignal
+        }
+        package Controllers
+        {
+            class DistrictsController
+            {
+                -equipmentCentreService
+                +Get() | api/Districts
+                +GetCentre() | api/Districts/{}/centre/{}
+            }
+            IEquipmentCentreService --o DistrictsController
+        }
+        package Workers
+        {
+            class CacheSignal<T>
+            {
+                +WaitAsync()
+                +Release()
+            }
+            hide CacheSignal fields
+
+            class DistrictsCacheWorker
+            {
+                -service
+                -cacheSignal
+                -memoryCache
+                -logger
+                +StartAsync()
+                #ExecuteAsync()
+            }
+            ' IEquipmentCentreService --o DistrictsCacheWorker
+            DistrictsCacheWorker o-up- IEquipmentCentreService
+            DistrictsCacheWorker o-- CacheSignal
+        }
+
     }
 }
 set separator none
@@ -199,8 +247,8 @@ package Visicom.DataApi.Geocoder
     }
     RequestOptions o-- Enums
     BasicGeocoder --> Data
-    BasicGeocoder o-- IRequestOptions
-    VisicomMapPointProvider --|> BasicGeocoder
+    IRequestOptions -o BasicGeocoder
+    VisicomMapPointProvider -|> BasicGeocoder
 }
 
 @enduml

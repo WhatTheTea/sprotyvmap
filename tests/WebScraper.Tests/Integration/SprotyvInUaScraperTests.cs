@@ -1,5 +1,6 @@
-﻿using System.Net.Http;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
+
+using System.Net.Http;
 
 namespace WhatTheTea.SprotyvMap.WebScraper.Tests.Integration;
 
