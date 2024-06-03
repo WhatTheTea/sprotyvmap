@@ -1,5 +1,5 @@
 
-name: Deploy to Firebase Hosting on merge
+name: Deploy sprotyv-map to Firebase
 on:
   push:
     branches:
