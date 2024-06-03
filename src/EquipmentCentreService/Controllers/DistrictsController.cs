@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
+using System.Net;
+
 using WhatTheTea.SportyvMap.EquipmentCentreService.Services;
-using WhatTheTea.SprotyvMap.Shared.Abstractions;
 using WhatTheTea.SprotyvMap.Shared.Primitives;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -16,14 +17,31 @@ namespace WhatTheTea.SportyvMap.EquipmentCentreService.Controllers
 
         // GET: api/Districts
         [HttpGet]
-        public async Task<IEnumerable<District>> Get() => 
-            await service.GetDistrictsAsync();
+        public async Task<ActionResult<IEnumerable<District>>> Get()
+        {
+            try
+            {
+                var districts = await service.GetDistrictsAsync();
+                return districts.ToArray();
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return new StatusCodeResult((int)HttpStatusCode.NotFound);
+            }
+        }
 
-
-
-        // GET api/Districts/1/centre/1
+        // GET: api/Districts/1/centre/1
         [HttpGet("{district}/centre/{id}")]
-        public async Task<EquipmentCentre> GetCentre(int district, int id) =>
-            await service.GetEquipmentCentreAsync(int district, int id);
+        public async Task<ActionResult<EquipmentCentre>> GetCentre(int district, int id)
+        {
+            try
+            {
+                return await service.GetEquipmentCentreAsync(district, id);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return new StatusCodeResult((int)HttpStatusCode.NotFound);
+            }
+        }
     }
 }
