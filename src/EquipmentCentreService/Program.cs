@@ -10,15 +10,26 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<HttpClient>();
 builder.Services.AddControllers();
+builder.Services.AddMemoryCache();
+builder.Services.AddLogging();
+builder.Services.AddHttpClient();
 
 var visicomApiKey = builder.Configuration["VISICOM_DAPI_KEY"] ?? string.Empty;
 var requestOptions = new RequestOptions(Languages.Ukrainian, visicomApiKey);
+
 builder.Services
-    .AddScoped<IMapPointProvider, VisicomMapPointProvider>(provider =>
-        new VisicomMapPointProvider(provider.GetRequiredService<HttpClient>(), requestOptions))
-    .AddScoped<IDataProvider, WebScraper>(s => WebScraper.Create(s.GetRequiredService<HttpClient>()).GetAwaiter().GetResult());
+    .AddScoped<IMapPointProvider, VisicomMapPointProvider>(services =>
+        new VisicomMapPointProvider(
+            services.GetRequiredService<HttpClient>(),
+            requestOptions,
+            services.GetRequiredService<ILogger<VisicomMapPointProvider>>())
+        );
+
+builder.Services.AddScoped<IDataProvider, WebScraper>(services => 
+    WebScraper.Create(services.GetRequiredService<HttpClient>())
+    .GetAwaiter()
+    .GetResult());
 
 builder.Services.AddControllers();
 
