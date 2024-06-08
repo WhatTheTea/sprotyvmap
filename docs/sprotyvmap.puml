@@ -41,6 +41,7 @@ package sprotyvmap
         }
         District *- EquipmentCentre
         EquipmentCentre o- MapPoint
+        Abstractions --> Primitives
 
     }
     package SprotyvInUaScraper
@@ -55,6 +56,7 @@ package sprotyvmap
             +GetEquipmentCentre()
         }
         IDataProvider <|. WebScraper 
+        WebScraper -> Primitives
         class XPathBuilder
         {
             {static} DistrictNameXPath
@@ -99,53 +101,6 @@ package sprotyvmap
     }
     package WebService
     {
-        package Providers
-        {
-            class VisicomMapPointProvider 
-            {
-                -httpClient
-                -requestOptions
-                -logger
-                +GetPointAsync()
-            }
-            IMapPointProvider <|.. VisicomMapPointProvider 
-        }
-        package Services
-        {
-            interface IEquipmentCentreService
-            {
-                GetDistrictsAsync()
-                GetEquipmentCentreAsync()
-            }
-            class VisicomEquipmentCentreService implements IEquipmentCentreService
-            {
-                -dataProvider
-                -mapPointProvider
-                +GetDistrictsAsync()
-                +GetEquipmentCentreAsync()
-            }
-            class CachedEquipmentCentreService implements IEquipmentCentreService
-            {
-                -cache
-                -cacheSignal
-                -logger
-                +GetDistrictsAsync()
-                +GetEquipmentCentreAsync()
-            }
-            IDataProvider <-- VisicomEquipmentCentreService
-            IMapPointProvider <-- VisicomEquipmentCentreService
-            CachedEquipmentCentreService -> CacheSignal
-        }
-        package Controllers
-        {
-            class DistrictsController
-            {
-                -equipmentCentreService
-                +Get() | api/Districts
-                +GetCentre() | api/Districts/{}/centre/{}
-            }
-            IEquipmentCentreService --o DistrictsController
-        }
         package Workers
         {
             class CacheSignal<T>
@@ -164,9 +119,56 @@ package sprotyvmap
                 +StartAsync()
                 #ExecuteAsync()
             }
-            ' IEquipmentCentreService --o DistrictsCacheWorker
-            DistrictsCacheWorker o-up- IEquipmentCentreService
             DistrictsCacheWorker o-- CacheSignal
+        }
+        package Controllers
+        {
+            class DistrictsController
+            {
+                -equipmentCentreService
+                +Get() | api/Districts
+                +GetCentre() | api/Districts/{}/centre/{}
+            }
+        }
+        package Providers
+        {
+            class VisicomMapPointProvider 
+            {
+                -httpClient
+                -requestOptions
+                -logger
+                +GetPointAsync()
+            }
+            IMapPointProvider <|.. VisicomMapPointProvider 
+        }
+        package Services
+        {
+            interface IEquipmentCentreService
+            {
+                GetDistrictsAsync()
+                GetEquipmentCentreAsync()
+            }
+            IEquipmentCentreService --o DistrictsController
+            DistrictsCacheWorker o-up- IEquipmentCentreService
+            class VisicomEquipmentCentreService implements IEquipmentCentreService
+            {
+                -dataProvider
+                -mapPointProvider
+                +GetDistrictsAsync()
+                +GetEquipmentCentreAsync()
+            }
+            class CachedEquipmentCentreService implements IEquipmentCentreService
+            {
+                -cache
+                -cacheSignal
+                -logger
+                +GetDistrictsAsync()
+                +GetEquipmentCentreAsync()
+            }
+            Abstractions <-- VisicomEquipmentCentreService
+            ' IDataProvider <-- VisicomEquipmentCentreService
+            ' IMapPointProvider <-- VisicomEquipmentCentreService
+            CachedEquipmentCentreService -> CacheSignal
         }
 
     }
@@ -248,7 +250,7 @@ package Visicom.DataApi.Geocoder
     RequestOptions o-- Enums
     BasicGeocoder --> Data
     IRequestOptions -o BasicGeocoder
-    VisicomMapPointProvider -|> BasicGeocoder
+    VisicomMapPointProvider -up-|> BasicGeocoder
 }
 
 @enduml
