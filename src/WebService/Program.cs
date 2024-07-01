@@ -11,7 +11,9 @@ builder.Services.AddControllers();
 builder.Services.AddLogging();
 builder.Services.AddHttpClient();
 
-var visicomApiKey = builder.Configuration["VISICOM_DAPI_KEY"] ?? string.Empty;
+var visicomApiKey = builder.Configuration.GetValue<string>("VISICOM_DAPI_KEY") ??
+                    throw new InvalidOperationException("Can't load Visicom Data API key");
+
 builder.Services.AddEquipmentCentreDataProviders(visicomApiKey);
 builder.Services.AddEquipmentCentreCachedService();
 
