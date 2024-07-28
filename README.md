@@ -1,3 +1,6 @@
+# ⚠ STATUS
+Дані, що використовувалися у додатку зникли з публічного доступу, тому сервіс недоступний.
+
 # sprotyvmap
 ![firebaseStatus](https://github.com/WhatTheTea/sprotyvmap/actions/workflows/firebase-hosting-merge.yml/badge.svg) ![azureStatus](https://github.com/WhatTheTea/sprotyvmap/actions/workflows/main_sprotyvmap-api.yml/badge.svg)
 
